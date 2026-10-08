@@ -1,0 +1,1738 @@
+{
+    "version": "2.0.0",
+    "components": {
+        "gge15": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "U2",
+                "Symbol": "93224d657989f8cc",
+                "Device": "4e3ccfc9ee087a51",
+                "Name": "C3 / P2 同号接口",
+                "Unique ID": "gge15",
+                "Footprint": "300dc8813e208239",
+                "Description": "",
+                "Group ID": "",
+                "Channel ID": "$1e16037",
+                "Reuse Block": "",
+                "DeviceName": "2x6P双面直插-右插脚",
+                "FootprintName": "2x6P双面直插-右插脚"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "TXD0",
+                    "number": "1",
+                    "net": "METER_TX",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "IO16",
+                    "number": "2",
+                    "net": "+5V",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                },
+                "3": {
+                    "name": "IO14",
+                    "number": "3",
+                    "net": "SW_IN1",
+                    "props": {
+                        "Pin Number": "3"
+                    }
+                },
+                "4": {
+                    "name": "IO12",
+                    "number": "4",
+                    "net": "CF1",
+                    "props": {
+                        "Pin Number": "4"
+                    }
+                },
+                "5": {
+                    "name": "IO13",
+                    "number": "5",
+                    "net": "SW_IN2",
+                    "props": {
+                        "Pin Number": "5"
+                    }
+                },
+                "6": {
+                    "name": "VCC",
+                    "number": "6",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "6"
+                    }
+                },
+                "7": {
+                    "name": "GND",
+                    "number": "7",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "7"
+                    }
+                },
+                "8": {
+                    "name": "IO2",
+                    "number": "8",
+                    "net": "LIGHT",
+                    "props": {
+                        "Pin Number": "8"
+                    }
+                },
+                "9": {
+                    "name": "IO0",
+                    "number": "9",
+                    "net": "KEY",
+                    "props": {
+                        "Pin Number": "9"
+                    }
+                },
+                "10": {
+                    "name": "IO4",
+                    "number": "10",
+                    "net": "INA",
+                    "props": {
+                        "Pin Number": "10"
+                    }
+                },
+                "11": {
+                    "name": "IO5",
+                    "number": "11",
+                    "net": "INB",
+                    "props": {
+                        "Pin Number": "11"
+                    }
+                },
+                "12": {
+                    "name": "RXD0",
+                    "number": "12",
+                    "net": "METER_RX",
+                    "props": {
+                        "Pin Number": "12"
+                    }
+                }
+            }
+        },
+        "gge1_1": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "U60",
+                "Symbol": "3e6e7c7acbf9867f",
+                "Device": "033fd64a197a0d2c",
+                "Name": "={Manufacturer Part}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16038",
+                "Unique ID": "gge1_1",
+                "LCSC Part Name": "搭载 RISC-V 32 位单核处理器的极低功耗 SoC",
+                "Supplier Part": "C2848860",
+                "Manufacturer": "ESPRESSIF(乐鑫)",
+                "Manufacturer Part": "ESP32-C3FN4",
+                "Supplier Footprint": "QFN-32(5x5)",
+                "JLCPCB Part Class": "扩展库",
+                "Datasheet": "https://atta.szlcsc.com/upload/public/pdf/source/20220602/861C2DDE1DCA4B324FDF5F31A2F47564.pdf",
+                "Supplier": "LCSC",
+                "Description": "",
+                "Footprint": "0e1d9e659a06265d",
+                "3D Model": "d066284799ba4b8d911f827502e647fb",
+                "3D Model Title": "QFN-32_L5.0-W5.0-H0.8-P0.50-BL-EP3.7",
+                "3D Model Transform": "196.85,196.85,0,90,0,0,-0.003,0.003,0",
+                "DeviceName": "ESP32-C3FN4",
+                "FootprintName": "QFN-32_L5.0-W5.0-P0.50-BL-EP3.7"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "LNA_IN",
+                    "number": "1",
+                    "net": "LNA_IN",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "VDD3P3",
+                    "number": "2",
+                    "net": "$1N16291",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                },
+                "3": {
+                    "name": "VDD3P3",
+                    "number": "3",
+                    "net": "$1N16291",
+                    "props": {
+                        "Pin Number": "3"
+                    }
+                },
+                "4": {
+                    "name": "XTAL_32K_P/GPIO0",
+                    "number": "4",
+                    "net": "INB",
+                    "props": {
+                        "Pin Number": "4"
+                    }
+                },
+                "5": {
+                    "name": "XTAL_32K_N/GPIO1",
+                    "number": "5",
+                    "net": "INA",
+                    "props": {
+                        "Pin Number": "5"
+                    }
+                },
+                "6": {
+                    "name": "GPIO2",
+                    "number": "6",
+                    "net": "LIGHT",
+                    "props": {
+                        "Pin Number": "6"
+                    }
+                },
+                "7": {
+                    "name": "CHIP_EN",
+                    "number": "7",
+                    "net": "CHIP_EN",
+                    "props": {
+                        "Pin Number": "7"
+                    }
+                },
+                "8": {
+                    "name": "GPIO3",
+                    "number": "8",
+                    "net": "RELAY_OUT",
+                    "props": {
+                        "Pin Number": "8"
+                    }
+                },
+                "9": {
+                    "name": "MTMS/GPIO4",
+                    "number": "9",
+                    "net": "SW_IN1",
+                    "props": {
+                        "Pin Number": "9"
+                    }
+                },
+                "10": {
+                    "name": "MTDI/GPIO5",
+                    "number": "10",
+                    "net": "SW_IN2",
+                    "props": {
+                        "Pin Number": "10"
+                    }
+                },
+                "11": {
+                    "name": "VDD3P3_RTC",
+                    "number": "11",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "11"
+                    }
+                },
+                "12": {
+                    "name": "MTCK/GPIO6",
+                    "number": "12",
+                    "net": "METER_RX",
+                    "props": {
+                        "Pin Number": "12"
+                    }
+                },
+                "13": {
+                    "name": "MTDO/GPIO7",
+                    "number": "13",
+                    "net": "METER_TX",
+                    "props": {
+                        "Pin Number": "13"
+                    }
+                },
+                "14": {
+                    "name": "GPIO8",
+                    "number": "14",
+                    "net": "KEY",
+                    "props": {
+                        "Pin Number": "14"
+                    }
+                },
+                "15": {
+                    "name": "GPIO9",
+                    "number": "15",
+                    "net": "BOOT",
+                    "props": {
+                        "Pin Number": "15"
+                    }
+                },
+                "16": {
+                    "name": "GPIO10",
+                    "number": "16",
+                    "net": "CF1",
+                    "props": {
+                        "Pin Number": "16"
+                    }
+                },
+                "17": {
+                    "name": "VDD3P3_CPU",
+                    "number": "17",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "17"
+                    }
+                },
+                "18": {
+                    "name": "VDD_SPI",
+                    "number": "18",
+                    "net": "$1N16297",
+                    "props": {
+                        "Pin Number": "18"
+                    }
+                },
+                "19": {
+                    "name": "SPIHD",
+                    "number": "19",
+                    "net": "",
+                    "props": {
+                        "Pin Number": "19"
+                    }
+                },
+                "20": {
+                    "name": "SPIWP",
+                    "number": "20",
+                    "net": "",
+                    "props": {
+                        "Pin Number": "20"
+                    }
+                },
+                "21": {
+                    "name": "SPICS0/GPIO14",
+                    "number": "21",
+                    "net": "",
+                    "props": {
+                        "Pin Number": "21"
+                    }
+                },
+                "22": {
+                    "name": "SPICLK/GPIO15",
+                    "number": "22",
+                    "net": "",
+                    "props": {
+                        "Pin Number": "22"
+                    }
+                },
+                "23": {
+                    "name": "SPID/GPIO16",
+                    "number": "23",
+                    "net": "",
+                    "props": {
+                        "Pin Number": "23"
+                    }
+                },
+                "24": {
+                    "name": "SPIQ/GPIO17",
+                    "number": "24",
+                    "net": "",
+                    "props": {
+                        "Pin Number": "24"
+                    }
+                },
+                "25": {
+                    "name": "GPIO18",
+                    "number": "25",
+                    "net": "USB_DM",
+                    "props": {
+                        "Pin Number": "25"
+                    }
+                },
+                "26": {
+                    "name": "GPIO19",
+                    "number": "26",
+                    "net": "USB_DP",
+                    "props": {
+                        "Pin Number": "26"
+                    }
+                },
+                "27": {
+                    "name": "U0RXD",
+                    "number": "27",
+                    "net": "UART0_RX",
+                    "props": {
+                        "Pin Number": "27"
+                    }
+                },
+                "28": {
+                    "name": "U0TXD",
+                    "number": "28",
+                    "net": "UART0_TX",
+                    "props": {
+                        "Pin Number": "28"
+                    }
+                },
+                "29": {
+                    "name": "XTAL_N",
+                    "number": "29",
+                    "net": "XTAL_N",
+                    "props": {
+                        "Pin Number": "29"
+                    }
+                },
+                "30": {
+                    "name": "XTAL_P",
+                    "number": "30",
+                    "net": "XTAL_P",
+                    "props": {
+                        "Pin Number": "30"
+                    }
+                },
+                "31": {
+                    "name": "VDDA",
+                    "number": "31",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "31"
+                    }
+                },
+                "32": {
+                    "name": "VDDA",
+                    "number": "32",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "32"
+                    }
+                },
+                "33": {
+                    "name": "GND",
+                    "number": "33",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "33"
+                    }
+                }
+            }
+        },
+        "gge2_1": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "C35",
+                "Symbol": "f7bd35c9ef73368b",
+                "Device": "2a1e6855908adbc2",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16039",
+                "Unique ID": "gge2_1",
+                "Supplier Footprint": "0402",
+                "Footprint": "df0a122d8d95816a",
+                "3D Model": "36a51122f27c49738f86b3bfa98863e0",
+                "3D Model Title": "C0402_L1.0-W0.5-H0.5",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0,0",
+                "Value": "100nF",
+                "Description": "",
+                "DeviceName": "CAP_0402",
+                "FootprintName": "C0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge3_2": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "C36",
+                "Symbol": "f7bd35c9ef73368b",
+                "Device": "2a1e6855908adbc2",
+                "Value": "10uf",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16040",
+                "Unique ID": "gge3_2",
+                "Supplier Footprint": "0402",
+                "Footprint": "df0a122d8d95816a",
+                "3D Model": "36a51122f27c49738f86b3bfa98863e0",
+                "3D Model Title": "C0402_L1.0-W0.5-H0.5",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0,0",
+                "Description": "",
+                "DeviceName": "CAP_0402",
+                "FootprintName": "C0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge7_1": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "C37",
+                "Symbol": "f7bd35c9ef73368b",
+                "Device": "2a1e6855908adbc2",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16041",
+                "Unique ID": "gge7_1",
+                "Supplier Footprint": "0402",
+                "Footprint": "df0a122d8d95816a",
+                "3D Model": "36a51122f27c49738f86b3bfa98863e0",
+                "3D Model Title": "C0402_L1.0-W0.5-H0.5",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0,0",
+                "Value": "100nF",
+                "Description": "",
+                "DeviceName": "CAP_0402",
+                "FootprintName": "C0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge11_0": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "C8",
+                "Symbol": "f7bd35c9ef73368b",
+                "Device": "2a1e6855908adbc2",
+                "Value": "1uF",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16042",
+                "Unique ID": "gge11_0",
+                "Supplier Footprint": "0402",
+                "Footprint": "df0a122d8d95816a",
+                "3D Model": "36a51122f27c49738f86b3bfa98863e0",
+                "3D Model Title": "C0402_L1.0-W0.5-H0.5",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0,0",
+                "Description": "",
+                "DeviceName": "CAP_0402",
+                "FootprintName": "C0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "CHIP_EN",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge12_0": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "C9",
+                "Symbol": "f7bd35c9ef73368b",
+                "Device": "2a1e6855908adbc2",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16043",
+                "Unique ID": "gge12_0",
+                "Supplier Footprint": "0402",
+                "Footprint": "df0a122d8d95816a",
+                "3D Model": "36a51122f27c49738f86b3bfa98863e0",
+                "3D Model Title": "C0402_L1.0-W0.5-H0.5",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0,0",
+                "Value": "100nF",
+                "Description": "",
+                "DeviceName": "CAP_0402",
+                "FootprintName": "C0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "$1N16291",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge13_1": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "C10",
+                "Symbol": "f7bd35c9ef73368b",
+                "Device": "2a1e6855908adbc2",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16044",
+                "Unique ID": "gge13_1",
+                "Supplier Footprint": "0402",
+                "Footprint": "df0a122d8d95816a",
+                "3D Model": "36a51122f27c49738f86b3bfa98863e0",
+                "3D Model Title": "C0402_L1.0-W0.5-H0.5",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0,0",
+                "Value": "100nF",
+                "Description": "",
+                "DeviceName": "CAP_0402",
+                "FootprintName": "C0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge14_0": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "C11",
+                "Symbol": "f7bd35c9ef73368b",
+                "Device": "2a1e6855908adbc2",
+                "Value": "10uF",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16045",
+                "Unique ID": "gge14_0",
+                "Supplier Footprint": "0402",
+                "Footprint": "df0a122d8d95816a",
+                "3D Model": "36a51122f27c49738f86b3bfa98863e0",
+                "3D Model Title": "C0402_L1.0-W0.5-H0.5",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0,0",
+                "Description": "",
+                "DeviceName": "CAP_0402",
+                "FootprintName": "C0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge8_0": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "C38",
+                "Symbol": "f7bd35c9ef73368b",
+                "Device": "676becc83d59520c",
+                "Footprint": "df0a122d8d95816a",
+                "Value": "1uF",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16046",
+                "Unique ID": "gge8_0",
+                "Supplier Footprint": "0603",
+                "3D Model": "ac125912035d415993ca9572d50418b1",
+                "3D Model Title": "C0603_L1.6-W0.8-H0.8",
+                "3D Model Transform": "62.992,31.496,0,0,0,0,0,0,0",
+                "Description": "",
+                "DeviceName": "CAP_0603",
+                "FootprintName": "C0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "$1N16297",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge9_0": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "C7",
+                "Symbol": "f7bd35c9ef73368b",
+                "Device": "676becc83d59520c",
+                "Footprint": "df0a122d8d95816a",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16047",
+                "Unique ID": "gge9_0",
+                "Supplier Footprint": "0603",
+                "3D Model": "ac125912035d415993ca9572d50418b1",
+                "3D Model Title": "C0603_L1.6-W0.8-H0.8",
+                "3D Model Transform": "62.992,31.496,0,0,0,0,0,0,0",
+                "Value": "100nF",
+                "Description": "",
+                "DeviceName": "CAP_0603",
+                "FootprintName": "C0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge15_0": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Symbol": "8d972741e3c634e8",
+                "Designator": "L1",
+                "Device": "a3cdb7fe71cfefab",
+                "Value": "2nH",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16069",
+                "Unique ID": "gge15_0",
+                "Supplier Footprint": "L0402",
+                "Footprint": "5b598e5956b9a15d",
+                "3D Model": "d8d36575a3234d4790bfa765c88664a7",
+                "3D Model Title": "L0402_L1.0-W0.5-H0.5_BEAD",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0.0005,0",
+                "Description": "",
+                "DeviceName": "L_0402",
+                "FootprintName": "L0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "$1N16291",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge10_4": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "R19",
+                "Device": "ea8c419d3e14cefb",
+                "Symbol": "9b74067c6bd0e29b",
+                "Footprint": "5e966b7b0ab0c443",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16099",
+                "Unique ID": "gge10_4",
+                "Supplier Footprint": "0402",
+                "3D Model": "671aefced39d4c318694bba8bd8efd39",
+                "3D Model Title": "R0402_L1.0-W0.5-H0.5",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0.0005,0",
+                "Value": "10K",
+                "Description": "",
+                "DeviceName": "Res_0402",
+                "FootprintName": "R0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "CHIP_EN",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge17_1": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "R20",
+                "Device": "ea8c419d3e14cefb",
+                "Symbol": "9b74067c6bd0e29b",
+                "Footprint": "5e966b7b0ab0c443",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16100",
+                "Unique ID": "gge17_1",
+                "Value": "4.7K",
+                "Supplier Footprint": "0402",
+                "3D Model": "671aefced39d4c318694bba8bd8efd39",
+                "3D Model Title": "R0402_L1.0-W0.5-H0.5",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0.0005,0",
+                "Description": "",
+                "DeviceName": "Res_0402",
+                "FootprintName": "R0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "LIGHT",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge17_2": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "R21",
+                "Device": "ea8c419d3e14cefb",
+                "Symbol": "9b74067c6bd0e29b",
+                "Footprint": "5e966b7b0ab0c443",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16101",
+                "Unique ID": "gge17_2",
+                "Value": "4.7K",
+                "Supplier Footprint": "0402",
+                "3D Model": "671aefced39d4c318694bba8bd8efd39",
+                "3D Model Title": "R0402_L1.0-W0.5-H0.5",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0.0005,0",
+                "Description": "",
+                "DeviceName": "Res_0402",
+                "FootprintName": "R0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "BOOT",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge17_6": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "R18",
+                "Device": "ea8c419d3e14cefb",
+                "Symbol": "9b74067c6bd0e29b",
+                "Footprint": "5e966b7b0ab0c443",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16102",
+                "Unique ID": "gge17_6",
+                "Supplier Footprint": "0402",
+                "3D Model": "671aefced39d4c318694bba8bd8efd39",
+                "3D Model Title": "R0402_L1.0-W0.5-H0.5",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0.0005,0",
+                "Value": "10K",
+                "Description": "",
+                "DeviceName": "Res_0402",
+                "FootprintName": "R0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "KEY",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge33_1": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Symbol": "54adcc29a24c3faa",
+                "Designator": "C33",
+                "Device": "cbd4b02235f380fb",
+                "Footprint": "df0a122d8d95816a",
+                "Value": "15pF",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16103",
+                "Unique ID": "gge33_1",
+                "LCSC Part Name": "10pF ±5% 50V",
+                "Supplier Part": "",
+                "Manufacturer": "SAMSUNG(三星)",
+                "Manufacturer Part": "",
+                "Supplier Footprint": "0402",
+                "JLCPCB Part Class": "Basic Part",
+                "Datasheet": "https://atta.szlcsc.com/upload/public/pdf/source/20160103/1457707722238.pdf",
+                "Supplier": "LCSC",
+                "3D Model": "36a51122f27c49738f86b3bfa98863e0",
+                "3D Model Title": "C0402_L1.0-W0.5-H0.5",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0,0",
+                "Tolerance": "±5%",
+                "Voltage Rated": "50V",
+                "Temperature Coefficient": "C0G",
+                "Name": "={Value}",
+                "Description": "容值:10pF;精度:±5%;额定电压:50V;材质(温度系数):C0G;",
+                "DeviceName": "CL05C100JB5NNNC",
+                "FootprintName": "C0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "XTAL_P",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge34_1": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Symbol": "54adcc29a24c3faa",
+                "Designator": "C34",
+                "Device": "cbd4b02235f380fb",
+                "Footprint": "df0a122d8d95816a",
+                "Value": "15pF",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16104",
+                "Unique ID": "gge34_1",
+                "LCSC Part Name": "10pF ±5% 50V",
+                "Supplier Part": "",
+                "Manufacturer": "SAMSUNG(三星)",
+                "Manufacturer Part": "",
+                "Supplier Footprint": "0402",
+                "JLCPCB Part Class": "Basic Part",
+                "Datasheet": "https://atta.szlcsc.com/upload/public/pdf/source/20160103/1457707722238.pdf",
+                "Supplier": "LCSC",
+                "3D Model": "36a51122f27c49738f86b3bfa98863e0",
+                "3D Model Title": "C0402_L1.0-W0.5-H0.5",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0,0",
+                "Tolerance": "±5%",
+                "Voltage Rated": "50V",
+                "Temperature Coefficient": "C0G",
+                "Name": "={Value}",
+                "Description": "容值:10pF;精度:±5%;额定电压:50V;材质(温度系数):C0G;",
+                "DeviceName": "CL05C100JB5NNNC",
+                "FootprintName": "C0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "XTAL_N",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge37_1": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Symbol": "5b5d8c62988ff012",
+                "Designator": "L6",
+                "Footprint": "f3964b125d83541b",
+                "Supplier": "LCSC",
+                "Manufacturer": "Sunlord(顺络)",
+                "Manufacturer Part": "SDCL1005C39NJTDF",
+                "Value": "4.7nH",
+                "Supplier Part": "",
+                "JLCPCB Part Class": "扩展库",
+                "Device": "a59f230e4245f309",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16106",
+                "Unique ID": "gge37_1",
+                "LCSC Part Name": "39nH",
+                "Supplier Footprint": "0402",
+                "Datasheet": "",
+                "3D Model": "d8d36575a3234d4790bfa765c88664a7",
+                "3D Model Title": "L0402_L1.0-W0.5-H0.5_BEAD",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0.0005,0",
+                "Rated Current": "200mA",
+                "DC Resistance (DCR)": "1Ω",
+                "Tolerance": "±5%",
+                "Name": "={Value}",
+                "Description": "电��值:39nH;额定电流:200mA;直流电阻(DCR):1Ω;精度:±5%;",
+                "DeviceName": "SDCL1005C39NJTDF",
+                "FootprintName": "R0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "LNA_IN",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge50": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Symbol": "9bb0993309141328",
+                "Designator": "L7",
+                "Footprint": "f3964b125d83541b",
+                "Supplier": "LCSC",
+                "Supplier Part": "",
+                "Manufacturer": "Sunlord(顺络)",
+                "Manufacturer Part": "SDCL1005C1N3STDF",
+                "Value": "NC",
+                "JLCPCB Part Class": "扩展库",
+                "Device": "76803989a66521b8",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16107",
+                "Unique ID": "gge50",
+                "LCSC Part Name": "1.3nH",
+                "Supplier Footprint": "0402",
+                "Datasheet": "https://atta.szlcsc.com/upload/public/pdf/source/20231027/6126A3AAC5912C34388756BE22DEE00C.pdf",
+                "3D Model": "f6d1952e61d54696b3449b2fc42ef9b7",
+                "3D Model Title": "L0402-RD",
+                "3D Model Transform": "40.1574,20.4724,0,0,0,0,0,0,0",
+                "Tolerance": "-",
+                "Rated Current": "400mA",
+                "DC Resistance (DCR)": "100mΩ",
+                "Saturation Current (Isat)": "-",
+                "Q @ Freq": "8@100MHz",
+                "Frequency - Self Resonant": "10GHz",
+                "Ratings": "-",
+                "Name": "={Value}",
+                "Description": "电感值:1.3nH;精度:-;额定电流:400mA;直流电阻(DCR):100mΩ;饱和电流(Isat):-;",
+                "DeviceName": "SDCL1005C1N3STDF",
+                "FootprintName": "R0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "$1N16263",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge5_1": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Symbol": "c78a2d255f464897",
+                "Designator": "U28",
+                "Device": "437c3fa7cb04bdca",
+                "Name": "={Manufacturer Part}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16108",
+                "Unique ID": "gge5_1",
+                "LCSC Part Name": "OA-C07",
+                "Supplier Part": "C9900003278",
+                "Manufacturer": "",
+                "Manufacturer Part": "OA-C07",
+                "Supplier Footprint": "SMD",
+                "JLCPCB Part Class": "扩展库",
+                "Datasheet": "",
+                "Supplier": "LCSC",
+                "Footprint": "4c42e36b065f98c5",
+                "3D Model": "881d69b5d8774632a3a8edfeb33ce9df",
+                "3D Model Title": "ANT-SMD_OA-C07",
+                "3D Model Transform": "137.795,66.929,0,0,0,0,0,0,0",
+                "Description": "",
+                "DeviceName": "OA-C07",
+                "FootprintName": "ANT-SMD_OA-C07"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "ANT",
+                    "number": "1",
+                    "net": "$1N16263",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge7_0": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Symbol": "5b5d8c62988ff012",
+                "Designator": "L9",
+                "Footprint": "af89facc2b5e41b8",
+                "Supplier": "LCSC",
+                "Manufacturer": "Sunlord(顺络)",
+                "Manufacturer Part": "SDCL1005C39NJTDF",
+                "Value": "5.6nH",
+                "Supplier Part": "",
+                "JLCPCB Part Class": "扩展库",
+                "Device": "a59f230e4245f309",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16111",
+                "Unique ID": "gge7_0",
+                "LCSC Part Name": "39nH",
+                "Supplier Footprint": "0402",
+                "Datasheet": "",
+                "3D Model": "d8d36575a3234d4790bfa765c88664a7",
+                "3D Model Title": "L0402_L1.0-W0.5-H0.5_BEAD",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0.0005,0",
+                "Rated Current": "200mA",
+                "DC Resistance (DCR)": "1Ω",
+                "Tolerance": "±5%",
+                "Name": "={Value}",
+                "Description": "电感值:39nH;额定电流:200mA;直流电阻(DCR):1Ω;精度:±5%;",
+                "DeviceName": "SDCL1005C39NJTDF",
+                "FootprintName": "myr0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "$1N16263",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "LNA_IN",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge138": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "U70",
+                "LCSC Part Name": "1x6P 间距:2mm 圆针 直插",
+                "Symbol": "fa051e32e2bae1a0",
+                "Device": "e974cba271f13992",
+                "Name": "={Manufacturer Part}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16112",
+                "Unique ID": "gge138",
+                "Supplier Part": "",
+                "Manufacturer": "",
+                "Manufacturer Part": "",
+                "Supplier Footprint": "插件,P=2mm",
+                "JLCPCB Part Class": "扩展库",
+                "Datasheet": "",
+                "Supplier": "",
+                "Pin Structure": "1x6P",
+                "Pitch": "2mm",
+                "Row Spacing": "2mm",
+                "Circluar Pins/Square Pins": "圆针",
+                "Mounting Type": "直插",
+                "Number of Rows": "单排",
+                "Number of Pins": "6P",
+                "Current Rating": "2A",
+                "Length of Mating Pin": "3.5mm",
+                "Insulation Height": "2.8mm",
+                "Length of End Connection Pin": "3.7mm",
+                "Contact Material": "黄铜",
+                "Contact Plating": "金",
+                "Operating Temperature": "-40℃~+105℃",
+                "Color": "黑色",
+                "Footprint": "4f3fc4f5c22a8a47",
+                "3D Model": "",
+                "3D Model Title": "",
+                "3D Model Transform": "",
+                "Description": "",
+                "DeviceName": "6P-AutoDownload",
+                "FootprintName": "6P-AutoDownload"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "UART0_RX",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                },
+                "3": {
+                    "name": "3",
+                    "number": "3",
+                    "net": "UART0_TX",
+                    "props": {
+                        "Pin Number": "3"
+                    }
+                },
+                "4": {
+                    "name": "4",
+                    "number": "4",
+                    "net": "BOOT",
+                    "props": {
+                        "Pin Number": "4"
+                    }
+                },
+                "5": {
+                    "name": "5",
+                    "number": "5",
+                    "net": "CHIP_EN",
+                    "props": {
+                        "Pin Number": "5"
+                    }
+                },
+                "6": {
+                    "name": "6",
+                    "number": "6",
+                    "net": "+3V3",
+                    "props": {
+                        "Pin Number": "6"
+                    }
+                }
+            }
+        },
+        "gge139": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Name": "40MHz",
+                "Designator": "OSC1",
+                "Symbol": "7e7eed803af6932e",
+                "Device": "c2ed901515ba4731",
+                "LCSC Part Name": "",
+                "Supplier Part": "S201640M9PF10PPM.1",
+                "Manufacturer": "SOSET(索斯特)",
+                "Manufacturer Part": "S201640M9PF10PPM",
+                "Supplier Footprint": "",
+                "JLCPCB Part Class": "",
+                "Datasheet": "",
+                "Supplier": "LCSC",
+                "Footprint": "6949377a783b6a84",
+                "3D Model": "5d2c7f6d96ec4dd1b062bb930f1f4d30|0819f05c4eef4c71ace90d822a990e87",
+                "3D Model Title": "CRYSTAL-SMD_4P-L2.0-W1.6-BL",
+                "3D Model Transform": "80.709,64.961,0,0,0,0,0,0,0",
+                "Type": "",
+                "Value": "",
+                "Normal temperature Frequency Tolerance": "",
+                "Load Capacitance": "",
+                "Frequency Stability": "",
+                "Equivalent Series Resistance(ESR)": "",
+                "Description": "",
+                "Unique ID": "gge139",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16113",
+                "DeviceName": "S201640M9PF10PPM",
+                "FootprintName": "CRYSTAL-SMD_4P-L2.0-W1.6-BL"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "XTAL_P",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "GND",
+                    "number": "2",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                },
+                "3": {
+                    "name": "3",
+                    "number": "3",
+                    "net": "XTAL_N",
+                    "props": {
+                        "Pin Number": "3"
+                    }
+                },
+                "4": {
+                    "name": "GND",
+                    "number": "4",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "4"
+                    }
+                }
+            }
+        },
+        "gge140": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Symbol": "b5fb52c392f771c7",
+                "Designator": "J71",
+                "Device": "4338dbd3dae6f692",
+                "LCSC Part Name": "排母2.54mm 1X3pin",
+                "Supplier Part": "C9900016709",
+                "Manufacturer": "",
+                "Manufacturer Part": "排母2.54mm 1X3pin",
+                "Supplier Footprint": "排母2.54mm 1X3pin",
+                "JLCPCB Part Class": "Extended Part",
+                "Datasheet": "",
+                "Supplier": "LCSC",
+                "Footprint": "8f91cfeda8eb2c1d",
+                "3D Model": "37be19d4eefe45728fb2e34f302d2793|0819f05c4eef4c71ace90d822a990e87",
+                "3D Model Title": "HDR-TH_3P-P2.54_CS-1165SDIG",
+                "3D Model Transform": "316.141,94.488,0,0,0,0,0,0,-125.984",
+                "Name": "继电器模块",
+                "Description": "",
+                "Unique ID": "gge140",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16114",
+                "DeviceName": "排母2.54mm 1X3pin",
+                "FootprintName": "HDR-TH_3P-P2.54_CS-1165SDIG"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "+5V",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                },
+                "3": {
+                    "name": "3",
+                    "number": "3",
+                    "net": "RELAY_OUT",
+                    "props": {
+                        "Pin Number": "3"
+                    }
+                }
+            }
+        },
+        "c3-relay-pulldown": {
+            "props": {
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Designator": "R22",
+                "Device": "ea8c419d3e14cefb",
+                "Symbol": "9b74067c6bd0e29b",
+                "Footprint": "5e966b7b0ab0c443",
+                "Name": "={Value}",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$1I16115",
+                "Unique ID": "c3-relay-pulldown",
+                "Supplier Footprint": "0402",
+                "3D Model": "671aefced39d4c318694bba8bd8efd39",
+                "3D Model Title": "R0402_L1.0-W0.5-H0.5",
+                "3D Model Transform": "39.37,19.685,0,0,0,0,0,0.0005,0",
+                "Value": "10K",
+                "Description": "",
+                "DeviceName": "Res_0402",
+                "FootprintName": "R0402"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "RELAY_OUT",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        }
+    },
+    "designRule": {
+        "trackPhysics": {
+            "copperThickness1oz": {
+                "name": "copperThickness1oz",
+                "isDefault": true,
+                "unit": "mm",
+                "strokeValue": {
+                    "common": {
+                        "min": 0.127,
+                        "max": 2.54,
+                        "default": 0.254
+                    }
+                }
+            },
+            "copperThickness2oz": {
+                "name": "copperThickness2oz",
+                "isDefault": false,
+                "unit": "mm",
+                "strokeValue": {
+                    "common": {
+                        "min": 0.203,
+                        "max": 2.54,
+                        "default": 0.254
+                    }
+                }
+            }
+        },
+        "netRule": {
+            "GND": {
+                "net": "GND",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "+3V3": {
+                "net": "+3V3",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "UART0_RX": {
+                "net": "UART0_RX",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "UART0_TX": {
+                "net": "UART0_TX",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "BOOT": {
+                "net": "BOOT",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "CHIP_EN": {
+                "net": "CHIP_EN",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "$1N16263": {
+                "net": "$1N16263",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "LNA_IN": {
+                "net": "LNA_IN",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "XTAL_N": {
+                "net": "XTAL_N",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "XTAL_P": {
+                "net": "XTAL_P",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "KEY": {
+                "net": "KEY",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "LIGHT": {
+                "net": "LIGHT",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "$1N16291": {
+                "net": "$1N16291",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "$1N16297": {
+                "net": "$1N16297",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "USB_DM": {
+                "net": "USB_DM",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "USB_DP": {
+                "net": "USB_DP",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "CF1": {
+                "net": "CF1",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "METER_TX": {
+                "net": "METER_TX",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "METER_RX": {
+                "net": "METER_RX",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "SW_IN2": {
+                "net": "SW_IN2",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "SW_IN1": {
+                "net": "SW_IN1",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "RELAY_OUT": {
+                "net": "RELAY_OUT",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "INA": {
+                "net": "INA",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "INB": {
+                "net": "INB",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "+5V": {
+                "net": "+5V",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            }
+        }
+    },
+    "differentialPair": {},
+    "netClass": {},
+    "equalLengthNetGroup": {}
+}

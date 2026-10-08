@@ -4,6 +4,9 @@
 #include <string.h>
 inline const char* validateConfig(const JsonDocument& d){
  if(!d.is<JsonObjectConst>())return "object_required";
+ if(!d["channel"].isNull()&&(!d["channel"].is<const char*>()||(strcmp(d["channel"],"onboard")&&strcmp(d["channel"],"external"))))return "unknown_channel";
+ if(!d["latch_on_ina"].isNull()&&!d["latch_on_ina"].is<bool>())return "boolean_required";
+ if(!d["latch_pulse_ms"].isNull()&&(!d["latch_pulse_ms"].is<int>()||d["latch_pulse_ms"].as<int>()<50||d["latch_pulse_ms"].as<int>()>200))return "pulse_range";
  for(const char* key:{"max_current","max_power","vref","iref","pref"}){
   if(d[key].isNull())continue;
   float max=strcmp(key,"max_current")==0?16:strcmp(key,"max_power")==0?3680:1e9f;

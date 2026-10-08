@@ -55,7 +55,7 @@ adb -s emulator-5554 shell am instrument -w -e class com.topsai.meteringsocket.P
 
 ## HA模拟联测
 
-前提和副作用见[HA文档](HOME_ASSISTANT.md)。执行 `python tools/bootstrap_mqtt.py`；验证九实体、ON命令状态回传和离线，随后清理模拟实体。模拟发布器运行Python载荷，不是ESP32执行MQTT固件，因此只证明对接约定和HA能接受该结构。
+前提和副作用见[HA文档](HOME_ASSISTANT.md)。执行 `python tools/bootstrap_mqtt.py`；旧版模拟流程验证九实体、ON命令状态回传和离线，随后清理模拟实体。此历史流程不能替代当前十三实体及双路发现验收。模拟发布器运行Python载荷，不是ESP32执行MQTT固件，因此只证明对接约定和HA能接受该结构。
 
 ## 实板验收顺序
 
@@ -65,7 +65,11 @@ adb -s emulator-5554 shell am instrument -w -e class com.topsai.meteringsocket.P
 
 | 项目 | 期望 |
 |---|---|
-| 复位/烧录/供电不稳定 | 根据模块输入电路验证下拉阻值，测量GPIO3和触点，确认是否保持关闭 |
+| 复位/烧录/供电不稳定 | 测量GPIO0/1脉冲、GPIO3和两路触点；确认上电OFF脉冲；验证突然断电磁保持触点可保留状态 |
+| 磁保持脉冲 | INA/INB不同时为HIGH、换向5ms死区、50~200ms范围及方向反转；检查busy/known/estimated只是估计 |
+| 原有KEY/LIGHT | GPIO8低有效3秒配网，下载时松开；GPIO2低有效快闪/慢闪/常亮 |
+| CF1 | GPIO10隔离后上升沿、运行计数和Hz；重启清零，不重复累计UART电量 |
+| 双路独立性 | 各自规则/请求/复位/倒计时/每日定时，共享计量与输入；旧请求默认板载，external命令不改板载配置 |
 | BL0942正确接线 | 4800/8N1有效帧，单位和标准表吻合 |
 | UART断线/停帧 | 五秒后关闭并锁定，恢复帧不自动重启 |
 | 两开关与去抖 | NO闭合true；允许条件失效关闭且撤销请求 |
@@ -77,7 +81,13 @@ adb -s emulator-5554 shell am instrument -w -e class com.topsai.meteringsocket.P
 | 倒计时 | 到期关闭；跨millis回卷逻辑及重新上电取消 |
 | OTA成功/失败/中断 | 输出关闭，重启应用有效，不错误恢复继电器 |
 | 断电电量 | NVS保存损失范围及首帧基线符合实际需要 |
-| HA | 真设备发现、命令约束、断网遗嘱、重连发现 |
+| HA | 真设备十三实体发现、两路命令约束、CF1状态、断网遗嘱、重连发现 |
 | 手机 | Android 8.0（API 26）及以上实机配网、后台/前台、旋转、签名升级 |
 
 将板卡版本、器件型号、负载、标准表、软件commit、日期及结果记录到新的验收报告，保留失败项，不覆盖现有模拟验证记录。
+
+## 当前双路测试入口
+
+本次已运行的结果见[1.1.0 验证](DUAL_CHANNEL_VERIFICATION_2026-10-08.md)。原生检查运行 `tools/test-core.ps1`，原理图与引脚检查运行 `python tools/verify_schematics.py`。裸板完整测试为 `python tools/bench_dual_test.py`（需先烧录测试固件和本机凭据），补充测试为 `python tools/bench_dual_extra.py`（实际 OTA 切换测试／正式固件）。仅用于没有外围设备或市电的裸开发板，测试注入不是实物计量。
+
+`tools/ha_dual_verify.py` 在已配置的 HA 容器内部使用 stdin 提供本机 device JSON，验证当前十三实体和两路开关。`mode=production` 时只验证未接计量的正式固件保持关闭。不要把凭据作为命令行参数公开。

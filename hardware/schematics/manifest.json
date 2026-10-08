@@ -1,0 +1,21 @@
+{
+  "export_date": "2026-10-08",
+  "editor_version": "3.2.149.88089769",
+  "schematic_pages": [
+    "30f74ffc01687967",
+    "c548d19eb08c0ce0",
+    "15323f62468c5a86"
+  ],
+  "pcb_documents": 0,
+  "panel_documents": 0,
+  "schematic_documents": 2,
+  "schematic_pages_count": 3,
+  "libraries_included": true,
+  "filtered_document_types": [
+    "PCB",
+    "PANEL"
+  ],
+  "archive_structure_verified": true,
+  "import_roundtrip_verified": false,
+  "cached_previews_included": false
+}

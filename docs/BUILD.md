@@ -74,7 +74,7 @@ chmod +x gradlew
 
 Windows对应gradlew.bat。首次联网下载依赖；缓存齐全才可加 `--offline`。代理设置只放本机环境，不提交带凭据的代理地址。
 
-应用ID `com.topsai.meteringsocket`，版本1.0.0。输出 `android/app/build/outputs/apk/debug/app-debug.apk`。debug keystore由本机工具生成，不在仓库；别的电脑重建可能无法覆盖安装旧APK。正式release签名尚未配置。
+应用ID `com.topsai.meteringsocket`，版本1.1.0（versionCode=2）。输出 `android/app/build/outputs/apk/debug/app-debug.apk`。debug keystore由本机工具生成，不在仓库；别的电脑重建可能无法覆盖安装旧APK。正式release签名尚未配置。
 
 ## 校验
 

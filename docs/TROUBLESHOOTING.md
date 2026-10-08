@@ -4,7 +4,7 @@
 
 | 现象 | 检查与处理 |
 |---|---|
-| 找不到热点 | 没有Wi-Fi配置才默认开启；长按GPIO0三秒，检查按钮接CTRL_GND，热点十分钟关闭 |
+| 找不到热点 | 没有Wi-Fi配置才默认开启；长按GPIO8原有KEY三秒，检查按钮接CTRL_GND，热点十分钟关闭 |
 | 热点显示无互联网 | 这是预期；保持连接，不切换其他Wi-Fi；App优先用Wi-Fi网络 |
 | 配对403 | 必须setup模式且从设备热点访问192.168.4.1；家庭局域网不允许读取token |
 | 配网后App断连 | 家庭Wi-Fi IP变了；路由器查IP，更新当前设备地址，保留token |
@@ -22,6 +22,9 @@
 | HA没有发现 | HA和设备必须连同broker，MQTT集成已开启；broker重连或HA出生online会重新发现 |
 | HA实体unavailable / unknown | 异常MQTT断线的遗嘱或状态过期可导致unavailable；计量null对应unknown。主动DISCONNECT可能保留旧online，另查mqtt_connected，不仅看availability |
 | OTA失败 | 使用firmware.bin，不用factory/HTML/其他芯片镜像；令牌有效、分区匹配，App文件上限为1,900,000字节（含等号），并检查网络及供电 |
+| 无法进入ROM下载 | 松开GPIO8 KEY使其保持HIGH，再按GPIO9 BOOT执行下载；GPIO2/8/9原有外部上拉保留 |
+| 板载开启方向相反 | 核对INA/INB与实板触点，通过latch_on_ina反转；状态估计没有触点反馈 |
+| CF1不计数 | 核对GPIO10、隔离后逻辑电平和上升沿；默认电量脉冲随负载变化，不能将其当作电网频率 |
 | OTA后仍锁定 | 预期；有效计量后解除，手动模式再开启 |
 | 缺Build Tools35错误 | 确认使用本仓库明确指定36.0.0的build.gradle，并安装Build Tools36 |
 | SDK/JDK路径错误 | 设置JAVA_HOME为JDK17、ANDROID_HOME为SDK，见BUILD，不依赖原电脑路径 |

@@ -1,0 +1,47 @@
+{
+  "chipSignals": 15,
+  "sharedConnectorSignals": 12,
+  "newControlComponents": [
+    "R22",
+    "J71"
+  ],
+  "unchangedMainElectricalConnectionsExceptThreePreviouslyUnusedP2Pins": true,
+  "isolatedGroundsVerified": true,
+  "savedPages": 3,
+  "controllerDrc": [
+    {
+      "type": "warn",
+      "count": 3
+    }
+  ],
+  "mainDrc": [
+    {
+      "type": "error",
+      "count": 1
+    },
+    {
+      "type": "warn",
+      "count": 6
+    }
+  ],
+  "isolationDrc": [
+    {
+      "type": "error",
+      "count": 1
+    },
+    {
+      "type": "warn",
+      "count": 6
+    }
+  ],
+  "legacyDrcErrorPresentBeforeThisTask": [
+    {
+      "type": "error",
+      "count": 1
+    },
+    {
+      "type": "warn",
+      "count": 4
+    }
+  ]
+}

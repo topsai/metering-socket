@@ -1,10 +1,12 @@
 # 验证记录 · 2026-10-08
 
-裸ESP32-C3最新联测见[实板记录](HARDWARE_BENCH_2026-10-08.md)：实际烧录、Wi-Fi/HTTP、测试注入下联动与保护、NVS重启和真实Flash OTA通过。正常管理员提权添加LocalSubnet-only TCP1883入站规则后，真实MQTT九实体发现、HA开关/约束、遗嘱和重连通过。安卓模拟器直接访问开发板IP控制通过。正式固件已恢复、MQTT在线，未接计量时HA ON不能开启，四种瞬时读数unknown。恢复流程两个失败注入用例通过。
+当前 1.1.0 双路验证见[本次同步记录](DUAL_CHANNEL_VERIFICATION_2026-10-08.md)。
+> 历史记录：以下结果属于本次原理图同步前的单路/GPIO0配网/九实体版本。不能作为现有GPIO8 KEY、磁保持双路、CF1或十三实体版本的实测证据；本次新增验证结果应另行记录。
+同步前裸ESP32-C3联测见[实板记录](HARDWARE_BENCH_2026-10-08.md)：实际烧录、Wi-Fi/HTTP、测试注入下联动与保护、NVS重启和真实Flash OTA通过。正常管理员提权添加LocalSubnet-only TCP1883入站规则后，真实MQTT九实体发现、HA开关/约束、遗嘱和重连通过。安卓模拟器直接访问开发板IP控制通过。当时正式固件已恢复、MQTT在线，未接计量时HA ON不能开启，四种瞬时读数unknown。恢复流程两个失败注入用例通过。
 
-首版阶段的构建与模拟验证（以下描述的是当时结果；当前实板结果见上文）：
+首版阶段的构建与模拟验证（以下描述的是当时结果；当时实板结果见上文）：
 
-- PlatformIO espressif32 7.0.1 / Arduino 2.0.17 编译成功，ESP32-C3，4MB Flash。最新正式应用829836字节，RAM41924字节。
+- PlatformIO espressif32 7.0.1 / Arduino 2.0.17 编译成功，ESP32-C3，4MB Flash。当时正式应用829836字节，RAM41924字节。
 - 原生 C++ 核心测试：启动关闭、AND允许/跟随、条件恢复不自启、超载与复位、暂停和真实故障独立、倒计时不清故障、millis回卷、35ms去抖、BL0942帧长度/校验/24位符号、能量计数回卷/回退。
 - 用与固件相同的 ArduinoJson7 运行配置校验测试：字符串/布尔值不能替代数字，保护范围、校准、规则、时间、端口、Wi-Fi类型验证通过。
 - Gradle :app:testDebugUnitTest（3个Java单元测试）、:app:lintDebug（0错误、6个样式/备份策略等警告）、:app:assembleDebug 成功。Android 8.0（API 26）兼容的有界读流代替readAllBytes。

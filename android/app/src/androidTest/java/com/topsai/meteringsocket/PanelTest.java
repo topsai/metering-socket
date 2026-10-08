@@ -14,6 +14,15 @@ public class PanelTest extends ActivityInstrumentationTestCase2<MainActivity>{
    getInstrumentation().runOnMainSync(()->a.off.performClick());Thread.sleep(1200);assertFalse(a.request(h,t,"/api/state",null).getBoolean("relay"));
    a.request(h,t,"/api/config",a.json("rule","both"));assertFalse(a.request(h,t,"/api/relay",a.json("on",true)).getBoolean("relay"));
    a.request(h,t,"/api/config",a.json("rule","manual"));
+   a.request(h,t,"/api/config",a.channelBody("external",a.json("rule","manual")));a.request(h,t,"/api/reset",a.channelBody("external",new JSONObject()));
+   JSONObject externalState=a.request(h,t,"/api/state",null);getInstrumentation().runOnMainSync(()->a.render(externalState));assertTrue(a.externalOn.isEnabled());
+   getInstrumentation().runOnMainSync(()->a.externalOn.performClick());Thread.sleep(1200);JSONObject externalOn=a.request(h,t,"/api/state",null);assertTrue(externalOn.getJSONObject("external").getBoolean("relay"));assertFalse(externalOn.getBoolean("relay"));
+   a.request(h,t,"/api/timer",a.channelBody("external",a.json("seconds",600)));JSONObject timed=a.request(h,t,"/api/state",null);assertTrue(timed.getJSONObject("external").getInt("countdown")>0);assertEquals(0,timed.getInt("countdown"));
+   JSONObject config=new JSONObject().put("rule","both").put("max_current",5).put("max_power",1000).put("schedule_on",60).put("schedule_off",120);
+   JSONObject independent=a.request(h,t,"/api/config",a.channelBody("external",config));assertEquals("both",independent.getJSONObject("external").getString("rule"));assertEquals("manual",independent.getString("rule"));assertEquals(60,independent.getJSONObject("external").getInt("schedule_on"));
+   assertFalse(a.request(h,t,"/api/relay",a.channelBody("external",a.json("on",true))).getJSONObject("external").getBoolean("relay"));
+   a.request(h,t,"/api/config",a.channelBody("external",a.json("rule","manual")));a.request(h,t,"/api/relay",a.channelBody("external",a.json("on",true)));
+   getInstrumentation().runOnMainSync(()->a.externalOff.performClick());Thread.sleep(1200);assertFalse(a.request(h,t,"/api/state",null).getJSONObject("external").getBoolean("relay"));
    try{a.request(h,"wrong-token","/api/state",null);fail("unauthorized accepted");}catch(java.io.IOException expected){}
    int before=a.request(h,t,"/api/state",null).optInt("ota_count");
    java.io.File firmware=new java.io.File(ctx.getCacheDir(),"test-firmware.bin");try(java.io.FileOutputStream out=new java.io.FileOutputStream(firmware)){out.write(new byte[256]);}
