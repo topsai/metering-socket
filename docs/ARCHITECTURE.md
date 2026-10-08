@@ -83,4 +83,4 @@ Android保存的设备名称、地址、token整体AES-GCM加密，轮询使用g
 
 K1为FH44L-1AT-L1-DC5V，由CN8023B驱动；GPIO0 INB、GPIO1 INA使用非阻塞限时脉冲，默认100ms。换向先两脚LOW并等待5ms，脉冲后两脚LOW；启动强制OFF脉冲。`latch_on_ina`默认true为暂定极性，允许反转；脉冲宽度整数50~200ms。`latch_busy`、`latch_known`、`latch_estimated`仅描述命令执行与估计，没有触点反馈。突然掉电不保证磁保持触点OFF。
 
-原有GPIO8 KEY低有效长按3秒配网；下载复位时必须释放以保持GPIO8高。原有GPIO2 LIGHT低有效，配网快闪、Wi-Fi断连慢闪、连接常亮。保留原外部上拉和所有现有器件。
+原有GPIO8 KEY低有效，短按松开切换板载磁保持继电器，长按3秒配网（松开不再切换）；下载复位时必须释放以保持GPIO8高。原有GPIO2 LIGHT低有效，配网快闪、Wi-Fi断连慢闪、连接常亮。保留原外部上拉和所有现有器件。

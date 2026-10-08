@@ -67,7 +67,7 @@ adb -s emulator-5554 shell am instrument -w -e class com.topsai.meteringsocket.P
 |---|---|
 | 复位/烧录/供电不稳定 | 测量GPIO0/1脉冲、GPIO3和两路触点；确认上电OFF脉冲；验证突然断电磁保持触点可保留状态 |
 | 磁保持脉冲 | INA/INB不同时为HIGH、换向5ms死区、50~200ms范围及方向反转；检查busy/known/estimated只是估计 |
-| 原有KEY/LIGHT | GPIO8低有效3秒配网，下载时松开；GPIO2低有效快闪/慢闪/常亮 |
+| 原有KEY/LIGHT | GPIO8短按切换板载，长按3秒配网且松开不再切换，下载时松开；GPIO2低有效快闪/慢闪/常亮 |
 | CF1 | GPIO10隔离后上升沿、运行计数和Hz；重启清零，不重复累计UART电量 |
 | 双路独立性 | 各自规则/请求/复位/倒计时/每日定时，共享计量与输入；旧请求默认板载，external命令不改板载配置 |
 | BL0942正确接线 | 4800/8N1有效帧，单位和标准表吻合 |

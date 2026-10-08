@@ -6,7 +6,7 @@
 
 使用 HA 接入时，HA 和 MQTT broker（消息服务器）需要保持运行，可部署在电脑、NAS 或其他主机上。离家使用需要预先配置 HA 的安全远程入口或家庭 VPN。
 
-> 当前版本 **1.1.0**。固件、安卓 App、网页和 Home Assistant 已同步板载磁保持继电器、外接继电器、原灯／按键及 CF1。裸 ESP32-C3 已验证双路接口与 GPIO 驱动、注入联动／保护、定时、NVS、真实 Flash OTA；安卓模拟器直连实板和 HA 十三实体双路控制通过。未接真实 BL0942、继电器或市电负载，详见[本次验证](docs/DUAL_CHANNEL_VERIFICATION_2026-10-08.md)。原理图工程包见[硬件文件](hardware/schematics/README.md)，不含 PCB；主体既有 DRC 错误仍待定位。
+> 当前版本 **1.1.1**。固件、安卓 App、网页和 Home Assistant 已同步板载磁保持继电器、外接继电器、原灯／按键及 CF1。裸 ESP32-C3 已验证双路接口与 GPIO 驱动、注入联动／保护、定时、NVS、真实 Flash OTA；安卓模拟器直连实板和 HA 十三实体双路控制通过。未接真实 BL0942、继电器或市电负载，详见[本次验证](docs/DUAL_CHANNEL_VERIFICATION_2026-10-08.md)。原理图工程包见[硬件文件](hardware/schematics/README.md)，不含 PCB；主体既有 DRC 错误仍待定位。
 
 ## 功能
 
@@ -49,7 +49,7 @@ GitHub文件页选择下载原始文件；不要将首次烧录镜像上传到OT
 | 微动开关1 / 2 | 4 / 5 | 上拉，闭合到CTRL_GND为true |
 | BL0942 UART RX / TX | 6 / 7 | 4800bps、8N1，经隔离通信 |
 | BL0942 CF1 | 10 | 隔离后上升沿计数及脉冲频率 |
-| 原有KEY | 8 | LOW有效，长按三秒配网；ROM下载时松开 |
+| 原有KEY | 8 | LOW有效，短按切换板载开关，长按三秒配网；ROM下载时松开 |
 
 GPIO号不是封装脚号。USB18/19、下载串口20/21、启动和Flash脚保留。裸芯片要求、继电器输入下拉及隔离边界见[PINS.md](docs/PINS.md)。
 

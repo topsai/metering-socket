@@ -15,7 +15,7 @@
 #include "config_validation.h"
 using namespace socketcore;
 WebServer server(80); WiFiClient net; PubSubClient mqtt(net); Preferences prefs;
-Controller control,externalControl; LatchingRelay latch; bool latchOnIna=true,ledOn=false;uint32_t latchPulseMs=100;hw_timer_t* coilTimer=nullptr;volatile uint32_t cf1Count=0;float cf1Frequency=0; Debounce inputs[2]; Energy energy; MeterRaw raw;
+KeyGesture physicalKey;bool setupRequested=false;Controller control,externalControl; LatchingRelay latch; bool latchOnIna=true,ledOn=false;uint32_t latchPulseMs=100;hw_timer_t* coilTimer=nullptr;volatile uint32_t cf1Count=0;float cf1Frequency=0; Debounce inputs[2]; Energy energy; MeterRaw raw;
 portMUX_TYPE safetyMux=portMUX_INITIALIZER_UNLOCKED;
 struct Guard { Guard(){portENTER_CRITICAL(&safetyMux);} ~Guard(){portEXIT_CRITICAL(&safetyMux);} };
 String id,token,ssid,password,broker,muser,mpass;uint16_t port=1883;
@@ -76,6 +76,13 @@ void safetyTask(void*){for(;;){uint32_t now=millis();{Guard lock;bool a=digitalR
 #ifdef METERING_BENCH
  if(benchInputOverride){a=benchInput1;b=benchInput2;}
 #endif
+ bool keyHeld=digitalRead(SETUP_PIN)==LOW;
+#ifdef METERING_BENCH
+ keyHeld=keyHeld||benchKeyHeld;
+#endif
+ KeyAction action=physicalKey.update(keyHeld,now);
+ if(action==KeyAction::Toggle&&!setupMode&&!setupRequested&&!otaActive){bool valid=seen&&now-lastMeter<5000&&raw.current/iref<=control.maxCurrent&&fabs(raw.power/pref)<=control.maxPower;toggleLocal(control,now,valid);}
+ if(action==KeyAction::Setup&&!setupMode&&!otaActive){control.stop();externalControl.stop();setupRequested=true;}
  pressed[0]=inputs[0].update(a,now);pressed[1]=inputs[1].update(b,now);static uint32_t sampleTime=0,sampleCount=0;if(now-sampleTime>=1000){cf1Frequency=float(uint32_t(cf1Count-sampleCount))*1000.0f/uint32_t(now-sampleTime);sampleCount=cf1Count;sampleTime=now;}}
 #ifdef METERING_BENCH
  if(int32_t(now-benchSafetyPauseUntil)>=0)
@@ -115,11 +122,7 @@ void loop(){
 #endif
  uint32_t now=millis();
  {Guard lock;ledOn=setupMode?((now/200)%2==0):WiFi.status()!=WL_CONNECTED?((now/1000)%2==0):true;digitalWrite(LED_PIN,ledOn?LOW:HIGH);}
- bool keyHeld=digitalRead(SETUP_PIN)==LOW;
-#ifdef METERING_BENCH
- keyHeld=keyHeld||benchKeyHeld;
-#endif
- static uint32_t held=0;if(keyHeld){if(!held)held=now;if(now-held>3000&&!setupMode)startSetup();}else held=0;
+ bool enterSetup;{Guard lock;enterSetup=setupRequested;setupRequested=false;}if(enterSetup)startSetup();
  if(setupMode&&now-setupStart>600000){WiFi.softAPdisconnect(true);setupMode=false;}
  if(now-lastPoll>=1000){lastPoll=now;Serial1.write(0x58);Serial1.write(0xAA);}
  if(packetLen&&now-packetStart>200)packetLen=0;
