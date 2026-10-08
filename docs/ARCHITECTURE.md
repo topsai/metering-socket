@@ -26,12 +26,12 @@ flowchart LR
 | firmware/src/main.cpp | Arduino适配、任务、UART、HTTP、OTA、MQTT、NVS、定时 |
 | MainActivity.java | 原生UI、轮询、局域网HTTP、multipart OTA |
 | Vault.java | Android Keystore AES-GCM配置存储 |
-| Endpoint.java / Streams.java | 地址校验、兼容Android8的有界读流 |
+| Endpoint.java / Streams.java | 地址校验、兼容Android 8.0（API 26）的有界读流 |
 | tests/core_bridge.cpp | 本机测试桥接，共享核心，非生产固件 |
 
 ## 控制状态与优先级
 
-`requested`为手动/HA/定时请求，`output`为实际输出，`fault`为真实保护，`paused`为暂停。HTTP暴露的fault是两类锁定的合并状态，同时单独提供paused。
+`requested` 为手动、HA 或定时开启请求，`output` 为控制器的逻辑输出状态，`fault` 为真实故障锁定，`paused` 为暂停。HTTP 暴露的 `fault` 是两类锁定的合并状态，同时单独提供 `paused`。没有继电器触点反馈；OTA 期间 GPIO 还受强制拉低约束，不能把逻辑状态当作触点或引脚电压测量结果。
 
 输出要求：没有fault、没有paused、输入条件满足，并且处于跟随模式或requested=true。
 
@@ -55,9 +55,9 @@ Arduino loop负责UART接收/每秒请求、HTTP、MQTT、NTP分钟调度、NVS�
 
 ## 配置与认证
 
-NVS namespace为socket，保存token、config及energy。32位token首次随机生成，配对只在十分钟setup模式且HTTP入口来自softAPIP时可读。无Wi-Fi配置建立热点；手动长按可重新开启。
+NVS namespace为socket，保存token、config及energy。128 位随机令牌以 32 个十六进制字符保存，配对只在十分钟setup模式且HTTP入口来自softAPIP时可读。无Wi-Fi配置建立热点；手动长按可重新开启。
 
-状态不返回Wi-Fi或MQTT密码。配置局部更新，但先校验完整请求；普通改配置会撤销手动请求，跟随模式仍可能自动输出。OTA必须认证，采用固定Content-Length multipart，结束锁定，成功重启。
+状态不返回 Wi-Fi 或 MQTT 密码。配置局部更新，先校验完整请求；保存撤销手动请求、取消倒计时并主动断开 MQTT，跟随模式仍可能按条件输出。提交 SSID 时需同时显式提交 Wi-Fi 密码，详见[API](API.md)。OTA 使用有 Content-Length 的 multipart；认证通过后开始写入，结束或上传中断设置锁定，成功重启。
 
 Android保存的设备名称、地址、token整体AES-GCM加密，轮询使用generation避免旧设备/后台响应覆盖当前状态，串行executor处理请求。局域网请求优先绑定已连接Wi-Fi网络，不依赖移动数据默认路由。
 
@@ -71,4 +71,4 @@ Android保存的设备名称、地址、token整体AES-GCM加密，轮询使用g
 | 请求、输出、故障、暂停、倒计时 | RAM | 重新初始化；无计量启动锁定 |
 | 时间 | 系统RAM + NTP | 重新校时，非RTC |
 
-没有事件数据库、历史曲线或本机电量清零接口。长期历史记录由HA承担。
+正式固件没有事件数据库、历史曲线或用户可用的电量清零接口。启用 HA 后可由 HA 保存历史；未接入 HA 时没有持久化历史曲线。bench 环境的清零命令仅用于清理合成测试数据。

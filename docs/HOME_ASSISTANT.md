@@ -4,7 +4,9 @@
 
 ## 连接关系
 
-手机App→设备HTTP是独立直连。ESP32→MQTT broker→Home Assistant用于HA控制和读数；HA和broker运行在电脑上时电脑需在线。设备连接家庭2.4GHz Wi-Fi，使用电脑的局域网IP，不使用127.0.0.1或Docker内部容器名。
+手机 App → 设备 HTTP 是局域网直连方式，可在没有 MQTT 服务的情况下使用。ESP32 → MQTT broker（消息服务器）→ Home Assistant 是另一条读数与控制路径；两种方式可以同时启用。
+
+HA 接入需要 HA 和 broker 保持运行。它们部署在电脑上时电脑需在线，也可以部署在 NAS 或其他可访问主机上。设备连接 2.4 GHz Wi-Fi，MQTT 地址填写设备能够访问的 broker 主机地址；本机测试使用电脑局域网 IP，不使用 127.0.0.1 或仅在 Docker 内部可解析的容器名。
 
 ## 手动配置（推荐给新环境）
 
@@ -23,9 +25,11 @@
 | 频率 | sensor | Hz |
 | 保护锁定 | binary_sensor | problem；真实故障或暂停 |
 
-HA累计电量实体可供能量面板选择，最终统计正确性仍依赖实板校准与NVS持久化。V/A/W/Hz有15秒expire_after；每两秒发送状态。失联计量返回null，连接断开则availability offline（异常断线由broker遗嘱检测，不保证瞬时）。
+HA 累计电量实体可供能量面板选择，统计正确性仍依赖实板校准与 NVS 持久化。连接正常时约每两秒发布状态；V/A/W/Hz 实体设置 15 秒 `expire_after`，超时未收到状态会过期。计量失联时设备发送 null，本次联测对应四项读数为 unknown。
 
-HA开关ON只是请求，条件不满足时状态仍OFF；跟随模式拒绝ON，OFF暂停跟随。复位、规则、校准、定时、OTA在App/网页或HTTP API完成，当前不提供对应HA按钮/数字实体。
+异常断线由 broker 检测后发布遗嘱 offline，实体变为 unavailable，不能保证瞬时完成。正常主动 DISCONNECT 不触发遗嘱；当前固件主动断开前未发送 offline，保留的 availability 可能仍为 online，不能仅凭该字段判断设备在线。
+
+HA 开关 ON 是请求，条件不满足时回传控制状态仍为 OFF；跟随模式忽略 MQTT ON，OFF 暂停跟随。复位、规则、校准、定时和 OTA 可使用 App 或 HTTP API；设备网页提供开关、复位、Wi-Fi、规则和 OTA，没有校准或定时配置界面。当前没有对应的 HA 配置按钮或数字实体，也没有继电器触点反馈。
 
 ## 本仓库Docker联测脚本
 
@@ -47,10 +51,14 @@ python tools/bootstrap_mqtt.py
 
 原开发机器已完成上述配置。克隆本仓库不会带来其broker密码或HA凭据；请使用自己的账号。端口占用、容器名称不同、HA用户未登录等见[故障排查](TROUBLESHOOTING.md)。不要公开private目录，不复制HA `.storage/auth`。
 
-真实ESP32-C3已完成发现、控制约束、遗嘱和重连联测，见[实板报告](HARDWARE_BENCH_2026-10-08.md)。Windows还需允许本地子网访问已发布的1883端口；添加规则需要管理员PowerShell，不能把本机能连broker当成设备能连的证据。保存设备配置会断开MQTT并在约十秒内重连，等待在线后再发送HA命令。
+真实 ESP32-C3 已完成发现、控制约束、遗嘱和重连联测，见[实板报告](HARDWARE_BENCH_2026-10-08.md)。Windows 需允许设备访问已发布的 1883 端口，添加防火墙规则需要管理员 PowerShell；本机能连接 broker 不能证明设备也能连接。
+
+保存设备配置会主动断开 MQTT。固件在 Wi-Fi 已连接且配置了 broker 时，按大于十秒的尝试间隔重连；该间隔不是连接完成时限，网络或认证异常时可能一直离线。确认 `mqtt_connected=true` 后再发送 HA 命令，离线期间的非保留命令不会补发。
 
 ## 远程使用
 
-App的HA入口只打开你设置的网页地址。使用已有HA安全远程入口或先连接家庭VPN；仓库不配置云服务、路由器端口转发或证书。设备HTTP、MQTT均面向可信家庭网络，不直接发布公网。
+App 的 HA 入口打开你设置的网页地址。当前地址校验允许 HTTP/HTTPS 根地址和端口，不接受子路径、查询参数、片段或内嵌账号；使用带子路径的入口时可自行在浏览器打开。
+
+离家使用需已配置的 HA 安全远程入口，也可先连接家庭 VPN 再访问设备或 HA。仓库没有预置云服务、路由器端口转发或证书配置；设备 HTTP 和 MQTT 面向可信家庭网络，不直接发布公网。
 
 MQTT主题及载荷见[API](API.md)。协议以[HA MQTT官方文档](https://www.home-assistant.io/integrations/mqtt/)为准。

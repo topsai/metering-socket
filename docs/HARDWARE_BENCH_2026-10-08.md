@@ -22,7 +22,7 @@ COM3 接入 ESP32-C3 QFN32 rev0.4、4MB XMC Flash、40MHz 晶振开发板，只�
 | HTTP阻塞 | 不完整POST阻塞主循环六秒，计量超时仍由独立任务触发，释放请求后确认输出关闭、meter_stale锁定；未用仪器测量最坏截止延迟 |
 | 每日定时 | 注入设备系统时间测试ON/OFF、次日恢复、同分钟OFF优先；未验证公网NTP获取 |
 | NVS与重启 | 强制保存后重启，配置、令牌、电量保留，输出关闭；未测突然断电损失窗口 |
-| Android控制实板 | Android35模拟器直接连接开发板LAN IP，真实App开启/关闭按钮和ESP32状态回传通过；没有ADB反向端口或HTTP转发，测试用例8.425秒 |
+| Android控制实板 | Android 15（API 35）模拟器直接连接开发板LAN IP，真实App开启/关闭按钮和ESP32状态回传通过；没有ADB反向端口或HTTP转发，测试用例8.425秒 |
 | HA与真实MQTT固件 | 九实体自动发现、HA ON/OFF到真实ESP32及状态回传；输入条件不满足/过流时不能开启，跟随OFF暂停且ON不能绕过 |
 | 真实离线遗嘱和重连 | bench关闭ESP32无线电且不发送MQTT DISCONNECT；broker超时发布遗嘱，HA九实体unavailable；恢复Wi-Fi后重新发现并控制成功 |
 | 正式固件HA保护 | 最终正式固件MQTT在线，未接BL0942时HA ON仍被拒绝，开关回传OFF、四种瞬时计量unknown |
@@ -31,7 +31,9 @@ COM3 接入 ESP32-C3 QFN32 rev0.4、4MB XMC Flash、40MHz 晶振开发板，只�
 
 `tools/bench_test.py` 的22组结果保存在本机 `private/bench/logic-results.json`，OTA结果在 `private/bench/ota-results.json`。这些文件及凭据、原始Flash均不提交公开仓库。
 
-![Android模拟器直接访问真实ESP32，数值和输入为USB注入](../dist/android-hardware-preview.png)
+![文案修订前的实板测试截图：Android模拟器直接访问真实ESP32，数值和输入为USB注入](../dist/android-hardware-preview.png)
+
+该截图保留实板联测时的原始界面。后续文档审核已将标题“无需MQTT”修正为“MQTT可选”，现行使用条件见[用户手册](USER_GUIDE.md)。
 
 ## 连接障碍的定位与修复
 
@@ -47,13 +49,13 @@ Docker须发布1883、broker启用认证，设备填写电脑实际LAN地址。�
 
 最初Android模拟器直接访问LAN超时，只经转发测试成功。清除模拟器启动进程继承的HTTP_PROXY/HTTPS_PROXY/ALL_PROXY并重新启动后，直接使用开发板IP执行App测试通过；这次没有转发通道。真实Android手机仍需单独验收。
 
-HA脚本现等待实际 `mqtt_connected=true` 后发命令，避免配置保存后最长约十秒重连期间的命令丢失。遗嘱测试关闭无线电；正常主动MQTT DISCONNECT不会发布遗嘱，不能拿它代替异常断线。
+HA 脚本等待实际 `mqtt_connected=true` 后发命令。配置保存会主动断开 MQTT，固件按大于十秒的尝试间隔重连；这不是最长连接时限，连接失败时仍可能持续离线。遗嘱测试关闭无线电；正常主动 MQTT DISCONNECT 不会发布遗嘱，不能代替异常断线测试。
 
 恢复步骤彼此独立，任何一步失败仍尝试停止注入、清电量、关闭USB和正式OTA；OTA失败再尝试串口PIO恢复，最后验证正式状态。两个无硬件失败注入用例验证Wi-Fi恢复失败不能跳过OTA、OTA失败仍尝试串口恢复；本次完整HA脚本退出码0、恢复验证通过。
 
 ## 待验证
 
-还需实测：真实BL0942串口与精度、隔离通信、两开关机械去抖、GPIO电压和复位瞬态、继电器带载、电量突然断电保存、真实手机热点配网和Wi-Fi直连、实际Android8兼容、NTP获取。
+还需实测：真实BL0942串口与精度、隔离通信、两开关机械去抖、GPIO电压和复位瞬态、继电器带载、电量突然断电保存、真实手机热点配网和Wi-Fi直连、实际Android 8.0（API 26）兼容、NTP获取。
 
 ## 复现测试
 

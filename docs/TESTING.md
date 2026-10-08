@@ -29,7 +29,7 @@ g++ -std=c++11 -I firmware/include -I firmware/.pio/libdeps/esp32c3/ArduinoJson/
 .\android\gradlew.bat -p android :app:testDebugUnitTest :app:lintDebug :app:assembleDebug
 ```
 
-覆盖Endpoint和有界Streams，共三个单元用例。报告在 `android/app/build/reports/`。minSdk26静态API检查不等于Android8实机验收。
+覆盖Endpoint和有界Streams，共三个单元用例。报告在 `android/app/build/reports/`。minSdk26静态API检查不等于Android 8.0（API 26）实机验收。
 
 ## Android模拟器集成
 
@@ -44,10 +44,12 @@ g++ -std=c++11 -I firmware/include -I firmware/.pio/libdeps/esp32c3/ArduinoJson/
 .\android\gradlew.bat -p android :app:assembleDebug :app:assembleDebugAndroidTest
 adb -s emulator-5554 install -r android/app/build/outputs/apk/debug/app-debug.apk
 adb -s emulator-5554 install -r android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
-adb -s emulator-5554 shell am instrument -w com.topsai.meteringsocket.test/android.test.InstrumentationTestRunner
+adb -s emulator-5554 shell am instrument -w -e class com.topsai.meteringsocket.PanelTest com.topsai.meteringsocket.test/android.test.InstrumentationTestRunner
 ```
 
-替换模拟器编号。1个集成用例检查实际UI开关按钮、AND条件、401、固定长度multipart及后台禁用控制，结束恢复原有Vault内容。模拟器通过10.0.2.2访问主机服务。固定32位演示token只用于测试，不在真实固件中。
+替换模拟器编号。上述命令只执行 `PanelTest` 的一个模拟集成用例，检查实际 UI 开关按钮、AND 条件、401、固定长度 multipart 及后台禁用控制，结束恢复原有 Vault 内容。模拟器通过 10.0.2.2 访问主机服务。固定的 32 字符演示令牌只用于测试，不在真实固件中。
+
+`HardwarePanelTest` 是另一个可选实板用例，需手动准备 App 私有目录内的设备配置；没有配置文件时该用例直接返回。若不指定测试类，测试运行器可能报告两个用例完成，但不能据此认定实板用例已执行。实板测试方法和范围见[实板记录](HARDWARE_BENCH_2026-10-08.md)。
 
 模拟服务执行共享C++核心，但计量数值为演示数据，配置/网络/OTA响应为测试夹具；它不模拟所有真实协议行为，不能替代芯片UART和写Flash验收。
 
@@ -63,11 +65,11 @@ adb -s emulator-5554 shell am instrument -w com.topsai.meteringsocket.test/andro
 
 | 项目 | 期望 |
 |---|---|
-| 复位/烧录/供电不稳定 | GPIO3外部下拉保持继电器关闭 |
+| 复位/烧录/供电不稳定 | 根据模块输入电路验证下拉阻值，测量GPIO3和触点，确认是否保持关闭 |
 | BL0942正确接线 | 4800/8N1有效帧，单位和标准表吻合 |
 | UART断线/停帧 | 五秒后关闭并锁定，恢复帧不自动重启 |
 | 两开关与去抖 | NO闭合true；允许条件失效关闭且撤销请求 |
-| 允许/跟随规则 | 七模式分别核对，OFF暂停跟随，复位才恢复 |
+| 允许/跟随规则 | 七模式分别核对；OFF暂停跟随，计量健康时解除锁定或每日ON可恢复暂停，真实故障需主动解除 |
 | 过载 | 真实故障保留，OFF/定时/输入变化不能自动解除 |
 | 网络阻塞/无broker | 输入释放及计量截止仍关闭；记录实测响应时间 |
 | 热点 | 长按三秒暂停输出，配对只允许热点，十分钟关闭 |
@@ -76,6 +78,6 @@ adb -s emulator-5554 shell am instrument -w com.topsai.meteringsocket.test/andro
 | OTA成功/失败/中断 | 输出关闭，重启应用有效，不错误恢复继电器 |
 | 断电电量 | NVS保存损失范围及首帧基线符合实际需要 |
 | HA | 真设备发现、命令约束、断网遗嘱、重连发现 |
-| 手机 | Android8+实机配网、后台/前台、旋转、签名升级 |
+| 手机 | Android 8.0（API 26）及以上实机配网、后台/前台、旋转、签名升级 |
 
 将板卡版本、器件型号、负载、标准表、软件commit、日期及结果记录到新的验收报告，保留失败项，不覆盖现有模拟验证记录。

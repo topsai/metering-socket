@@ -2,17 +2,19 @@
 
 基于 **ESP32-C3 + BL0942** 的计量插座软件：PlatformIO Arduino 固件、原生中文 Android App，以及可选的 Home Assistant MQTT 接入。
 
-手机在家庭 Wi-Fi 内直接连接设备，**不需要 MQTT、电脑或云服务器**。MQTT 用于 HA 自动发现和控制；离家可使用 HA 已有的安全远程入口或家庭 VPN。
+手机与设备在同一局域网、能够互相访问时，可以通过 HTTP 直接控制设备，**在没有 MQTT 服务的情况下也可以使用**。配置 MQTT 后，还可以接入 Home Assistant（HA），两种方式可以同时启用。
+
+使用 HA 接入时，HA 和 MQTT broker（消息服务器）需要保持运行，可部署在电脑、NAS 或其他主机上。离家使用需要预先配置 HA 的安全远程入口或家庭 VPN。
 
 > 当前版本1.0.0。裸ESP32-C3已验证Wi-Fi、HTTP、注入联动/保护、NVS和真实Flash OTA；安卓模拟器直接控制实板、HA真实MQTT发现/控制/遗嘱/重连通过。BL0942、继电器及真实手机仍待验收，详见[实板记录](docs/HARDWARE_BENCH_2026-10-08.md)。仓库包含软件和接线定义，不包含可直接投产的PCB。
 
 ## 功能
 
-- 一路高电平有效继电器、两路按下为true的微动开关。
+- 一路高电平有效的继电器控制输出、两路按下为 `true` 的微动开关输入；当前没有继电器触点反馈。
 - 电压、电流、有功功率、频率、累计电量；失联显示无效读数。
 - 手动、单路允许、AND/OR允许、AND/OR自动跟随，共七种规则。
 - 关闭倒计时、每日定时、过流/功率保护，故障与暂停分别管理。
-- 原生中文Android8+ App：多设备、配对、计量、控制、设置、OTA。
+- 原生中文Android 8.0（API 26）及以上 App：多设备、配对、计量、控制、设置、OTA。
 - 热点配网、令牌认证HTTP API、简易浏览器控制页。
 - MQTT Home Assistant九实体自动发现、在线状态和离线遗嘱。
 - 配置和电量周期保存、双OTA分区、独立安全控制任务。
@@ -55,13 +57,14 @@ GPIO号不是封装脚号。USB18/19、下载串口20/21、启动和Flash脚保�
 | [用户手册](docs/USER_GUIDE.md) | 安装、配对、联动、定时、保护、校准、升级 |
 | [GPIO与接线](docs/PINS.md) | 引脚、隔离信号、裸芯片、复位电平 |
 | [构建与烧录](docs/BUILD.md) | 环境、PIO、Android、整片/OTA镜像、校验 |
-| [Home Assistant](docs/HOME_ASSISTANT.md) | MQTT、Docker、自动发现、远程、模拟联测 |
+| [Home Assistant](docs/HOME_ASSISTANT.md) | MQTT、Docker、自动发现、远程及联测 |
 | [HTTP / MQTT API](docs/API.md) | 接口、字段、错误、示例、主题 |
 | [软件架构](docs/ARCHITECTURE.md) | 控制状态、任务、计量、持久化 |
 | [故障排查](docs/TROUBLESHOOTING.md) | 配网、联动、计量、MQTT、OTA、构建 |
 | [测试与验收](docs/TESTING.md) | 原生测试、安卓模拟器、HA、实板步骤 |
 | [验证记录](docs/VERIFICATION.md) | 已运行检查与未实测项 |
-| [裸开发板联测](docs/HARDWARE_BENCH_2026-10-08.md) | 实际烧录、测试注入、OTA与未通过项 |
+| [裸开发板联测](docs/HARDWARE_BENCH_2026-10-08.md) | 实际烧录、测试注入、OTA及验收边界 |
+| [文档审核记录](docs/DOCUMENTATION_REVIEW.md) | 连接方式、接口约定、术语与验证范围的修订 |
 | [安全说明](SECURITY.md) | 凭据、网络、OTA、公开提交检查 |
 | [参与开发](CONTRIBUTING.md) | 修改与验证要求 |
 | [版本记录](CHANGELOG.md) | 内容与限制 |

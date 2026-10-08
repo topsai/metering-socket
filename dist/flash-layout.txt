@@ -1,7 +1,9 @@
 ESP32-C3 / 4MB / QIO / 80MHz
 
-首次烧录推荐: 在 firmware 执行 pio run -t upload --upload-port COMxx
-或通过 esptool write_flash 0x0 meteringsocket-factory.bin
+首次烧录: 在 firmware 目录执行 pio run -e esp32c3 -t upload --upload-port COMxx
+COMxx 替换为实际串口。仓库默认构建环境为正式固件 esp32c3。
+或在仓库根目录使用已安装的 esptool:
+python -m esptool --chip esp32c3 --port COMxx write_flash 0x0 dist/meteringsocket-factory.bin
 
 分离镜像:
 0x0000 bootloader.bin

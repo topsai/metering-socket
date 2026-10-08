@@ -5,7 +5,7 @@
 1. 新建分支，修改共享核心时补真实行为回归测试，尤其故障优先级、暂停、输入恢复和时间回卷。
 2. 固件运行 `pio run -d firmware`；Windows运行 `tools/test-core.ps1`，其他平台见TESTING。
 3. Android运行testDebugUnitTest、lintDebug和assembleDebug；改变控制/API/OTA时用隔离模拟器验收，不点击真实负载。
-4. 更新相关文档和CHANGELOG，明确模拟验证与实板验证，不能把构建成功写成硬件验收。
+4. 更新相关文档和CHANGELOG，明确模拟验证、实板注入验证与实际器件验收；不能把构建成功或合成测试数据写成硬件验收。术语、连接条件和命令示例的要求见[文档审核记录](docs/DOCUMENTATION_REVIEW.md)。
 5. 若更新dist，确保APK/bin来自当前源码，重新合并factory镜像和更新SHA256SUMS。
 6. `git add`后运行 `python tools/check_public.py`，检查暂存清单；不提交private、签名密钥、.storage/auth或机器配置。
 

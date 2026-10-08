@@ -12,7 +12,7 @@
 | Flash/分区 | QIO / 80MHz / min_spiffs.csv双OTA |
 | ArduinoJson / PubSubClient | 7.4.2 / 2.8 |
 | JDK / Gradle / AGP | 17 / 8.13 / 8.13.2 |
-| Android | min26，compile/target36，Build Tools36.0.0 |
+| Android | minSdk 26（Android 8.0），compileSdk / targetSdk 36，Build Tools 36.0.0 |
 
 开发板名仅用于构建参数，不要求购买开发板。具体裸芯片的Flash容量、接法和晶振必须匹配，否则修改构建配置重新验证。
 
@@ -27,9 +27,9 @@ pio run -d firmware -t upload --upload-port COM7
 pio device monitor -d firmware --port COM7 --baud 115200
 ```
 
-COM7替换为实际串口；Linux/macOS使用实际 `/dev/ttyACM0` 等设备路径。首次需要网络下载平台和库，`.pio`为忽略的缓存。
+COM7 替换为实际串口；Linux/macOS 使用实际 `/dev/ttyACM0` 等设备路径。首次需要网络下载平台和库，`.pio` 为忽略的缓存。默认只构建正式环境 `esp32c3`；也可在构建或上传命令中显式加 `-e esp32c3`。测试环境 `esp32c3_bench` 需单独指定，使用边界见[实板记录](HARDWARE_BENCH_2026-10-08.md)。
 
-GPIO20/21接3.3V串口，或使用芯片USB Serial/JTAG，按硬件接法进入下载模式，见[PINS](PINS.md)。不使用5V串口逻辑。生成文件在 `firmware/.pio/build/esp32c3/`。
+GPIO20/21 接 3.3 V 串口，或使用芯片 USB Serial/JTAG，按硬件接法进入下载模式，见[PINS](PINS.md)。不使用 5 V 串口逻辑。正式固件的运行日志默认输出到 UART0（GPIO20/21）；USB 下载口不等于当前固件的日志串口。生成文件在 `firmware/.pio/build/esp32c3/`。
 
 ## 镜像和地址
 
