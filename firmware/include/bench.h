@@ -21,10 +21,12 @@ void benchLoop(){
    }else if(op=="clock"){timeval tv;tv.tv_sec=input["epoch"].as<long>();tv.tv_usec=0;settimeofday(&tv,nullptr);response["ok"]=true;
    }else if(op=="flush_energy"){prefs.putDouble("energy",energy.kwh);response["ok"]=true;
    }else if(op=="clear_energy"){energy=Energy{};prefs.putDouble("energy",0);response["ok"]=true;
+   }else if(op=="wifi_off"){WiFi.mode(WIFI_OFF);response["ok"]=true;
+   }else if(op=="wifi_on"){WiFi.mode(WIFI_STA);WiFi.begin(ssid.c_str(),password.c_str());response["ok"]=true;
    }else if(op=="setup"){startSetup();response["ok"]=true;
    }else if(op=="reboot"){response["ok"]=true;serializeJson(response,Serial);Serial.println();Serial.flush();delay(100);ESP.restart();return;
    }else if(op!="status"){response["error"]="unknown_op";}
-   if(op=="status"){fillState(response);response["token"]=token;response["gpio_relay"]=digitalRead(RELAY_PIN);response["heap"]=ESP.getFreeHeap();response["uptime_ms"]=millis();response["epoch"]=time(nullptr);response["setup_mode"]=setupMode;}
+   if(op=="status"){fillState(response);response["token"]=token;response["gpio_relay"]=digitalRead(RELAY_PIN);response["heap"]=ESP.getFreeHeap();response["uptime_ms"]=millis();response["epoch"]=time(nullptr);response["setup_mode"]=setupMode;response["wifi_connected"]=WiFi.status()==WL_CONNECTED;}
   }
   serializeJson(response,Serial);Serial.println();
  }

@@ -47,6 +47,8 @@ python tools/bootstrap_mqtt.py
 
 原开发机器已完成上述配置。克隆本仓库不会带来其broker密码或HA凭据；请使用自己的账号。端口占用、容器名称不同、HA用户未登录等见[故障排查](TROUBLESHOOTING.md)。不要公开private目录，不复制HA `.storage/auth`。
 
+真实ESP32-C3已完成发现、控制约束、遗嘱和重连联测，见[实板报告](HARDWARE_BENCH_2026-10-08.md)。Windows还需允许本地子网访问已发布的1883端口；添加规则需要管理员PowerShell，不能把本机能连broker当成设备能连的证据。保存设备配置会断开MQTT并在约十秒内重连，等待在线后再发送HA命令。
+
 ## 远程使用
 
 App的HA入口只打开你设置的网页地址。使用已有HA安全远程入口或先连接家庭VPN；仓库不配置云服务、路由器端口转发或证书。设备HTTP、MQTT均面向可信家庭网络，不直接发布公网。

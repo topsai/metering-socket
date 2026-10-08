@@ -36,7 +36,7 @@ class Bench:
   network=json.loads((PRIVATE/'network.json').read_text(encoding='utf-8-sig'));mqtt=json.loads((ROOT/'private'/'mqtt.json').read_text(encoding='utf-8-sig'));network.update(mqtt_user=mqtt['username'],mqtt_password=mqtt['password']);self.usb('provision',**network)
   for _ in range(40):
    d=self.discover()
-   if d['ip']!='0.0.0.0':
+   if d.get('wifi_connected') and d['ip']!='0.0.0.0':
     (PRIVATE/'device.json').write_text(json.dumps(self.device),encoding='utf-8');return d
    time.sleep(1)
   raise TimeoutError('Station did not connect')
