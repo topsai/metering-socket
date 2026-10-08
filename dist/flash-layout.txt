@@ -10,4 +10,4 @@ ESP32-C3 / 4MB / QIO / 80MHz
 0x10000 firmware.bin
 
 OTA只上传 firmware.bin；不能上传 meteringsocket-factory.bin。
-本机已验证镜像生成，没有连接芯片，没有实际烧录。
+ESP32-C3裸开发板已实际串口烧录及应用OTA验证。真实BL0942/继电器未接，详见docs/HARDWARE_BENCH_2026-10-08.md。

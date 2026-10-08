@@ -4,7 +4,7 @@
 
 手机在家庭 Wi-Fi 内直接连接设备，**不需要 MQTT、电脑或云服务器**。MQTT 用于 HA 自动发现和控制；离家可使用 HA 已有的安全远程入口或家庭 VPN。
 
-> 当前版本1.0.0。固件构建、原生测试、Android35模拟器及Docker HA模拟联测通过；尚未完成自焊实板、真实BL0942、继电器及Flash OTA验收。仓库包含软件和接线定义，不包含可直接投产的PCB。
+> 当前版本1.0.0。裸ESP32-C3已烧录并验证Wi-Fi、HTTP、注入条件下的联动/保护、NVS和真实Flash OTA；安卓模拟器经测试转发控制实板通过。真实MQTT连接尚未通过，BL0942、继电器及手机直连仍待验收，详见[实板记录](docs/HARDWARE_BENCH_2026-10-08.md)。仓库包含软件和接线定义，不包含可直接投产的PCB。
 
 ## 功能
 
@@ -61,6 +61,7 @@ GPIO号不是封装脚号。USB18/19、下载串口20/21、启动和Flash脚保�
 | [故障排查](docs/TROUBLESHOOTING.md) | 配网、联动、计量、MQTT、OTA、构建 |
 | [测试与验收](docs/TESTING.md) | 原生测试、安卓模拟器、HA、实板步骤 |
 | [验证记录](docs/VERIFICATION.md) | 已运行检查与未实测项 |
+| [裸开发板联测](docs/HARDWARE_BENCH_2026-10-08.md) | 实际烧录、测试注入、OTA与未通过项 |
 | [安全说明](SECURITY.md) | 凭据、网络、OTA、公开提交检查 |
 | [参与开发](CONTRIBUTING.md) | 修改与验证要求 |
 | [版本记录](CHANGELOG.md) | 内容与限制 |

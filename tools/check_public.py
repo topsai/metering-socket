@@ -16,12 +16,14 @@ PATTERNS = [re.compile(rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----'),
             re.compile(rb'(?:ghp_|gho_|github_pat_)[A-Za-z0-9_]{25,}')]
 
 def known_secrets():
-    file = ROOT / 'private' / 'mqtt.json'
-    if file.exists():
-        value = json.loads(file.read_text(encoding='utf-8-sig')).get('password', '')
-        if len(value) >= 12:
-            return [value.encode()]
-    return []
+    secrets = []
+    for relative, key in [('mqtt.json', 'password'), ('bench/network.json', 'password'), ('bench/device.json', 'token')]:
+        file = ROOT / 'private' / relative
+        if file.exists():
+            value = json.loads(file.read_text(encoding='utf-8-sig')).get(key, '')
+            if len(value) >= 8:
+                secrets.append(value.encode())
+    return secrets
 
 def contains_secret(data, secrets):
     return any(value in data for value in secrets) or any(p.search(data) for p in PATTERNS)

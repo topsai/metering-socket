@@ -57,6 +57,8 @@ adb -s emulator-5554 shell am instrument -w com.topsai.meteringsocket.test/andro
 
 ## 实板验收顺序
 
+已完成的裸开发板测试、独立bench环境、脚本使用边界和失败项见[2026-10-08实板记录](HARDWARE_BENCH_2026-10-08.md)。默认构建不包含测试注入。
+
 没有实物时不把以下项目标记通过。先使用隔离安全的低压测试环境验证MCU/继电器模块，再由具备市电测试条件的人完成计量端验收。
 
 | 项目 | 期望 |

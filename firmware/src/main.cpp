@@ -20,12 +20,19 @@ float vref=15883.34116f,iref=251065.6814f,pref=623.0270705f;
 bool pressed[2]={false,false},seen=false,setupMode=false,otaOk=false,otaActive=false;uint32_t lastMeter=0,lastPoll=0,lastPublish=0,lastSave=0,lastConnect=0,setupStart=0;
 int scheduleOn=-1,scheduleOff=-1,lastMinute=-1;uint8_t packet[23];size_t packetLen=0;uint32_t packetStart=0;
 const char* rules[]={"manual","input1","input2","both","either","both_follow","either_follow"};
+#ifdef METERING_BENCH
+bool benchInputOverride=false,benchInput1=false,benchInput2=false;
+#endif
+bool acceptMeter(const uint8_t* bytes,size_t length){MeterRaw m;if(!parseMeter(bytes,length,m))return false;{Guard lock;raw=m;seen=true;lastMeter=millis();}energy.add(m.count,pref*3600000.0/419430.4);return true;}
 String base(){return "meteringsocket/"+id;}
 bool healthy(){Guard lock;return seen && millis()-lastMeter<5000 && raw.current/iref<=control.maxCurrent && fabs(raw.power/pref)<=control.maxPower;}
 void command(bool on){Guard lock;control.command(on,millis());}
 void reply(int status,const String& value){server.send(status,"application/json; charset=utf-8",value);}
 bool auth(){if(server.header("Authorization")=="Bearer "+token)return true;reply(401,"{\"error\":\"unauthorized\"}");return false;}
 void fillState(JsonDocument& d){
+#ifdef METERING_BENCH
+ d["bench_mode"]=true;
+#endif
  Controller snapshot; MeterRaw rawSnapshot;bool inputSnapshot[2],seenSnapshot;uint32_t lastSnapshot;float vSnapshot,iSnapshot,pSnapshot;
  {Guard lock;snapshot=control;rawSnapshot=raw;inputSnapshot[0]=pressed[0];inputSnapshot[1]=pressed[1];seenSnapshot=seen;lastSnapshot=lastMeter;vSnapshot=vref;iSnapshot=iref;pSnapshot=pref;}
  const Controller& control=snapshot;const MeterRaw& raw=rawSnapshot;const bool* pressed=inputSnapshot;bool seen=seenSnapshot;uint32_t lastMeter=lastSnapshot;float vref=vSnapshot,iref=iSnapshot,pref=pSnapshot;
@@ -48,7 +55,11 @@ void config(){if(!auth())return;JsonDocument d;if(server.arg("plain").length()>2
  bool wifiChange=!d["ssid"].isNull();if(wifiChange){ssid=d["ssid"].as<String>();password=d["password"].as<String>();}save();mqtt.disconnect();mqtt.setServer(broker.c_str(),port);reply(200,"{\"ok\":true}");if(wifiChange)WiFi.begin(ssid.c_str(),password.c_str());
 }
 void applyOutput(){Guard lock;control.tick(millis(),pressed[0],pressed[1],seen&&millis()-lastMeter<5000,raw.current/iref,raw.power/pref);digitalWrite(RELAY_PIN,control.output&&!otaActive?HIGH:LOW);}
-void safetyTask(void*){for(;;){uint32_t now=millis();{Guard lock;pressed[0]=inputs[0].update(digitalRead(INPUT1_PIN)==LOW,now);pressed[1]=inputs[1].update(digitalRead(INPUT2_PIN)==LOW,now);}applyOutput();vTaskDelay(pdMS_TO_TICKS(5));}}
+void safetyTask(void*){for(;;){uint32_t now=millis();{Guard lock;bool a=digitalRead(INPUT1_PIN)==LOW,b=digitalRead(INPUT2_PIN)==LOW;
+#ifdef METERING_BENCH
+ if(benchInputOverride){a=benchInput1;b=benchInput2;}
+#endif
+ pressed[0]=inputs[0].update(a,now);pressed[1]=inputs[1].update(b,now);}applyOutput();vTaskDelay(pdMS_TO_TICKS(5));}}
 void publishDiscovery(){
  const char* keys[]={"relay","input1","input2","voltage","current","power","energy","frequency","fault"};
  const char* names[]={"插座继电器","微动开关1","微动开关2","电压","电流","功率","累计电量","频率","保护锁定"};
@@ -64,6 +75,7 @@ void publishDiscovery(){
 void stop(){Guard lock;control.stop();digitalWrite(RELAY_PIN,LOW);}
 void startSetup(){setupMode=true;setupStart=millis();stop();WiFi.mode(WIFI_AP_STA);WiFi.softAP(("MeteringSocket-"+id.substring(6)).c_str(),"socketsetup");}
 const char DASH[] PROGMEM=R"HTML(<!doctype html><html lang="zh"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>计量插座</title><style>body{font:17px system-ui;background:#101c27;color:#edf6fa;max-width:540px;margin:40px auto;padding:20px}button,input,select{font:inherit;padding:12px;margin:5px;border-radius:12px}button{background:#42dcc0}pre{white-space:pre-wrap}section{background:#213342;padding:16px;border-radius:20px}</style><h1>计量插座</h1><section><input id="token" placeholder="设备令牌"><button onclick="pair()">首次配对</button><pre id="state">尚未连接</pre><button onclick="cmd(true)">开启</button><button onclick="cmd(false)">关闭</button><button onclick="api('/api/reset',{})">解除保护</button></section><h3>Wi-Fi 配网</h3><input id="ssid" placeholder="2.4GHz Wi-Fi 名称"><input id="pass" type="password" placeholder="Wi-Fi 密码"><button onclick="api('/api/config',{ssid:ssid.value,password:pass.value})">保存</button><h3>联动规则</h3><select id="rule"><option value="manual">手动</option><option value="input1">开关1允许</option><option value="input2">开关2允许</option><option value="both">两个都按下允许</option><option value="either">任一个按下允许</option><option value="both_follow">跟随两路同时按下</option><option value="either_follow">跟随任一路按下</option></select><button onclick="api('/api/config',{rule:rule.value})">保存规则</button><h3>升级固件</h3><input id="bin" type="file" accept=".bin"><button onclick="upgrade()">上传</button><script>token.value=localStorage.token||'';async function api(path,data){try{let r=await fetch(path,{method:data?'POST':'GET',headers:{'Authorization':'Bearer '+token.value,'Content-Type':'application/json'},body:data?JSON.stringify(data):undefined});let j=await r.json();if(!r.ok)throw Error(j.error);localStorage.token=token.value;return j}catch(e){state.textContent=e.message;throw e}}async function pair(){let r=await fetch('/api/pair');let j=await r.json();if(j.token){token.value=j.token;localStorage.token=j.token}else alert('请长按配网按钮进入配对模式')}function cmd(on){api('/api/relay',{on})}async function upgrade(){let r=await fetch('/api/ota',{method:'POST',headers:{Authorization:'Bearer '+token.value},body:(()=>{let f=new FormData();f.append("firmware",bin.files[0],"firmware.bin");return f})()});alert(await r.text())}setInterval(async()=>{if(token.value)try{state.textContent=JSON.stringify(await api('/api/state'),null,2)}catch(e){}},2000)</script></html>)HTML";
+#include "bench.h"
 void setup(){
  digitalWrite(RELAY_PIN,LOW);pinMode(RELAY_PIN,OUTPUT);pinMode(INPUT1_PIN,INPUT_PULLUP);pinMode(INPUT2_PIN,INPUT_PULLUP);pinMode(SETUP_PIN,INPUT_PULLUP);pinMode(CF1_PIN,INPUT);
  Serial.begin(115200);Serial1.begin(4800,SERIAL_8N1,METER_RX_PIN,METER_TX_PIN);prefs.begin("socket",false);id="ms"+String(uint32_t(ESP.getEfuseMac()),HEX);load();WiFi.mode(WIFI_STA);if(ssid.isEmpty())startSetup();else WiFi.begin(ssid.c_str(),password.c_str());configTime(8*3600,0,"pool.ntp.org","ntp.aliyun.com");MDNS.begin(id.c_str());MDNS.addService("http","tcp",80);
@@ -77,12 +89,15 @@ void setup(){
  if(xTaskCreate(safetyTask,"relay_safety",3072,nullptr,4,nullptr)!=pdPASS){Serial.println("safety_task_init_failed");for(;;){digitalWrite(RELAY_PIN,LOW);delay(1000);}}server.begin();mqtt.setBufferSize(2048);mqtt.setSocketTimeout(1);mqtt.setServer(broker.c_str(),port);mqtt.setCallback([](char* topic,uint8_t* payload,unsigned int n){String s;for(unsigned i=0;i<n;i++)s+=char(payload[i]);if(String(topic)=="homeassistant/status"&&s=="online"){publishDiscovery();return;}if(String(topic)!=base()+"/relay/set"||(s!="ON"&&s!="OFF"))return;bool follow=control.rule==Rule::BothFollow||control.rule==Rule::EitherFollow;if(follow&&s=="ON")return;if(follow)stop();else command(s=="ON");applyOutput();mqtt.publish((base()+"/state").c_str(),state().c_str(),true);});
 }
 void loop(){
+#ifdef METERING_BENCH
+ benchLoop();
+#endif
  uint32_t now=millis();
  static uint32_t held=0;if(digitalRead(SETUP_PIN)==LOW){if(!held)held=now;if(now-held>3000&&!setupMode)startSetup();}else held=0;
  if(setupMode&&now-setupStart>600000){WiFi.softAPdisconnect(true);setupMode=false;}
  if(now-lastPoll>=1000){lastPoll=now;Serial1.write(0x58);Serial1.write(0xAA);}
  if(packetLen&&now-packetStart>200)packetLen=0;
- while(Serial1.available()){uint8_t b=Serial1.read();if(!packetLen){if(b!=0x55)continue;packetStart=now;}packet[packetLen++]=b;if(packetLen==23){MeterRaw m;if(parseMeter(packet,23,m)){{Guard lock;raw=m;seen=true;lastMeter=now;}energy.add(m.count,pref*3600000.0/419430.4);}packetLen=0;}}
+ while(Serial1.available()){uint8_t b=Serial1.read();if(!packetLen){if(b!=0x55)continue;packetStart=now;}packet[packetLen++]=b;if(packetLen==23){acceptMeter(packet,23);packetLen=0;}}
  server.handleClient();
  if(!broker.isEmpty()&&WiFi.status()==WL_CONNECTED&&!mqtt.connected()&&now-lastConnect>10000){lastConnect=now;if(mqtt.connect(id.c_str(),muser.c_str(),mpass.c_str(),(base()+"/availability").c_str(),1,true,"offline")){mqtt.publish((base()+"/availability").c_str(),"online",true);mqtt.subscribe((base()+"/relay/set").c_str());mqtt.subscribe("homeassistant/status");publishDiscovery();}}
  mqtt.loop();if(mqtt.connected()&&now-lastPublish>2000){lastPublish=now;mqtt.publish((base()+"/state").c_str(),state().c_str(),true);}
