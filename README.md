@@ -37,7 +37,15 @@ GitHub文件页选择下载原始文件；不要将首次烧录镜像上传到OT
 
 详见[用户手册](docs/USER_GUIDE.md)。热点开放十分钟；令牌只允许在配网模式通过设备热点读取。
 
-[首版界面截图](dist/android-preview.png)仅为历史模拟数据界面；当前双路界面以 1.1.0 APK 为准。
+## 页面预览
+
+以下为 1.1.1 实际 App 界面，使用模拟演示数据。[查看全部 13 张页面图片](docs/SCREENSHOTS.md)。
+
+| 实时计量 | 板载控制 | 外接控制 |
+|---|---|---|
+| ![实时计量](docs/images/android/01-dashboard.png) | ![板载控制](docs/images/android/02-onboard.png) | ![外接控制](docs/images/android/03-external.png) |
+
+[最新 Release 下载](https://github.com/topsai/metering-socket/releases/latest)提供 APK、首次烧录和 OTA 镜像、原理图及 SHA-256 校验文件。
 
 ## 引脚速查
 
@@ -57,6 +65,7 @@ GPIO号不是封装脚号。USB18/19、下载串口20/21、启动和Flash脚保�
 
 | 文档 | 内容 |
 |---|---|
+| [页面图册](docs/SCREENSHOTS.md) | 当前 App 全部页面、弹窗与演示说明 |
 | [用户手册](docs/USER_GUIDE.md) | 安装、配对、联动、定时、保护、校准、升级 |
 | [GPIO与接线](docs/PINS.md) | 引脚、隔离信号、裸芯片、复位电平 |
 | [构建与烧录](docs/BUILD.md) | 环境、PIO、Android、整片/OTA镜像、校验 |
