@@ -23,3 +23,7 @@
 主控 DRC 为 0 错误、3 警告；主体和隔离页属同一原理图，仍有一项既有错误及六项警告。旧版接口只返回数量，尚未定位该错误；不能宣称可直接投板。
 
 检查发布文件：在仓库根目录执行 `python tools/verify_schematics.py`。重新打包已导出的原工程副本可执行 `python tools/package_schematics.py <本地完整epro2> hardware/schematics/metering-socket-schematics.epro2`，再更新源码、网表、清单和哈希。完整原工程含 PCB，不应直接提交。
+
+---
+
+作者：**topsai (范斯特洛夫斯基)** · [项目地址](https://github.com/topsai/metering-socket)

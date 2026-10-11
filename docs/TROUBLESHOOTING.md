@@ -42,3 +42,7 @@
 - HA接口版本变化：查看容器实际config-flow结构，脚本仅记录已验证版本行为，不直接编辑HA `.storage` 配置。
 
 报问题时提供版本、规则、meter_valid/fault/paused/reason、错误码和经脱敏的日志；不要贴token、Wi-Fi/MQTT密码或HA认证文件。见[SECURITY](../SECURITY.md)。
+
+---
+
+作者：**topsai (范斯特洛夫斯基)** · [项目地址](https://github.com/topsai/metering-socket)

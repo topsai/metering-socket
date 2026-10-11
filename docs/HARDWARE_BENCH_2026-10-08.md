@@ -74,3 +74,7 @@ pio run -d firmware -e esp32c3_bench -t upload --upload-port COM3
 `tools/bench_ha_test.py` 需现有HA容器、认证broker和可访问的LAN，执行真实发现、控制约束、关闭无线电的遗嘱和重连，最后恢复正式固件。`ha_hardware_verify.py` 在HA容器执行各阶段断言，本次完整脚本通过。恢复错误会使测试失败，并报告步骤名；需要核对板卡最终状态，不能只看前面的PASS行。
 
 恢复流程无硬件测试：`python tests/bench_restore_test.py`。Python环境需安装pyserial才能使用其他USB bench脚本。
+
+---
+
+作者：**topsai (范斯特洛夫斯基)** · [项目地址](https://github.com/topsai/metering-socket)

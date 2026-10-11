@@ -50,3 +50,7 @@ adb pull /sdcard/Android/data/com.topsai.meteringsocket/files/screenshots/. docs
 ```
 
 生成器只向真实视图填入演示状态并打开弹窗，不操作真实插座或提交配置。捕获后仍需检查遮挡、凭据和文字可读性。
+
+---
+
+作者：**topsai (范斯特洛夫斯基)** · [项目地址](https://github.com/topsai/metering-socket)

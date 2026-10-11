@@ -91,3 +91,7 @@ adb -s emulator-5554 shell am instrument -w -e class com.topsai.meteringsocket.P
 本次已运行的结果见[1.1.0 验证](DUAL_CHANNEL_VERIFICATION_2026-10-08.md)。原生检查运行 `tools/test-core.ps1`，原理图与引脚检查运行 `python tools/verify_schematics.py`。裸板完整测试为 `python tools/bench_dual_test.py`（需先烧录测试固件和本机凭据），补充测试为 `python tools/bench_dual_extra.py`（实际 OTA 切换测试／正式固件）。仅用于没有外围设备或市电的裸开发板，测试注入不是实物计量。
 
 `tools/ha_dual_verify.py` 在已配置的 HA 容器内部使用 stdin 提供本机 device JSON，验证当前十三实体和两路开关。`mode=production` 时只验证未接计量的正式固件保持关闭。不要把凭据作为命令行参数公开。
+
+---
+
+作者：**topsai (范斯特洛夫斯基)** · [项目地址](https://github.com/topsai/metering-socket)

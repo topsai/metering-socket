@@ -63,3 +63,7 @@ App 的 HA 入口打开你设置的网页地址。当前地址校验允许 HTTP/
 离家使用需已配置的 HA 安全远程入口，也可先连接家庭 VPN 再访问设备或 HA。仓库没有预置云服务、路由器端口转发或证书配置；设备 HTTP 和 MQTT 面向可信家庭网络，不直接发布公网。
 
 MQTT主题及载荷见[API](API.md)。协议以[HA MQTT官方文档](https://www.home-assistant.io/integrations/mqtt/)为准。
+
+---
+
+作者：**topsai (范斯特洛夫斯基)** · [项目地址](https://github.com/topsai/metering-socket)

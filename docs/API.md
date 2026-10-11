@@ -115,3 +115,7 @@ state内容与HTTP状态一致。ON/OFF为大写文本，命令不retain。状�
 bool 实体模板使用 `{{ value_json.<字段> }}`，继电器的 `state_on` / `state_off` 为 Jinja 输出 True/False，命令 `payload_on` / `payload_off` 为 ON/OFF。LWT 用于异常断线，依赖 broker 检测连接丢失或超时；主动发送 MQTT DISCONNECT 不触发遗嘱。当前固件主动断开前未发布 offline，因此保留的 availability 可能仍为 online。一次 HTTP 失败也不能证明 MQTT 已离线。
 
 MQTT不携带HTTP token，访问控制由broker账号实现。共享账号没有按设备分开的ACL；部署者可在broker增加主题ACL。
+
+---
+
+作者：**topsai (范斯特洛夫斯基)** · [项目地址](https://github.com/topsai/metering-socket)

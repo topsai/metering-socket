@@ -28,3 +28,7 @@ LIGHT在配网时快闪、Wi-Fi断连时慢闪、连接时常亮。GPIO2/8/9原�
 开关、控制与继电器模块使用隔离后的CTRL_GND，不能跨接HOT_GND。BL0942的HOT_GND仍在火线域，UART/CF1必须经隔离进入ESP32。裸芯片仍需电源去耦、EN、电源时序、40MHz晶振、天线及Flash。
 
 `hardware/schematics/`保存不含 PCB 的原生 `.epro2` 工程包、独立 `.esch` 导出及网表，PCB不包含在发布范围。当前主图仍有1项DRC错误；控制图0错误、3警告，旧客户端未做视觉审核。这些源文件不代表已完成投板验收。
+
+---
+
+作者：**topsai (范斯特洛夫斯基)** · [项目地址](https://github.com/topsai/metering-socket)

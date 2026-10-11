@@ -12,3 +12,7 @@
 PR说明包括问题、行为变化、验证命令/结果和未测试项。用户界面优先中文，协议字段保持稳定；不未经版本说明改变既有字段或故障复位语义。
 
 项目当前未指定原创代码许可；贡献前确认你有权提交该内容，第三方代码需保留许可和来源。依赖见[THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md)。
+
+---
+
+作者：**topsai (范斯特洛夫斯基)** · [项目地址](https://github.com/topsai/metering-socket)

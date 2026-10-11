@@ -87,3 +87,7 @@ adb install -r dist/meteringsocket-debug.apk
 对照[SHA256SUMS](../dist/SHA256SUMS.txt)。Linux执行 `cd dist && sha256sum -c SHA256SUMS.txt`。哈希不是签名，需同时确认下载来源。APK验签用SDK Build Tools的 `apksigner verify --verbose <APK路径>`。
 
 常见构建问题见[排障](TROUBLESHOOTING.md)，开发测试见[TESTING](TESTING.md)。
+
+---
+
+作者：**topsai (范斯特洛夫斯基)** · [项目地址](https://github.com/topsai/metering-socket)

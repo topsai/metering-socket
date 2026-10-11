@@ -17,6 +17,8 @@ import java.util.Locale;
 import java.util.concurrent.*;
 
 public class MainActivity extends Activity {
+ static final String AUTHOR="topsai (范斯特洛夫斯基)";
+ static final String PROJECT_URL="https://github.com/topsai/metering-socket";
  final ExecutorService worker=Executors.newSingleThreadExecutor();final Handler ui=new Handler(Looper.getMainLooper());
  JSONArray profiles=new JSONArray();JSONObject latest=new JSONObject();String host="",token="";int generation=0,selected=0;boolean active=false,busy=false;
  LinearLayout root;TextView connection,reading,inputs,relay,externalRelay,details;Button on,off,reset,timer,externalOn,externalOff,externalReset,externalTimer;Spinner devices;
@@ -34,6 +36,7 @@ public class MainActivity extends Activity {
  LinearLayout c=card();label(c,"板载磁保持继电器",15);relay=label(c,"板载状态未知",23);on=button(c,"开启板载继电器",()->channelCommand("onboard","/api/relay",json("on",true)));off=button(c,"关闭板载继电器",()->channelCommand("onboard","/api/relay",json("on",false)));reset=button(c,"解除板载保护锁定",()->channelCommand("onboard","/api/reset",new JSONObject()));timer=button(c,"板载关闭倒计时",()->timerDialog("onboard"));button(c,"板载联动 · 保护 · 每日定时",()->rulesDialog("onboard"));label(c,"磁保持状态由驱动脉冲估计，未测量实际触点。原 KEY：短按切换板载开关；长按 3 秒进入配网，松开不再切换。",13);
  LinearLayout e=card();label(e,"外接普通继电器 · 独立控制",15);externalRelay=label(e,"外接状态未知",23);externalOn=button(e,"开启外接继电器",()->channelCommand("external","/api/relay",json("on",true)));externalOff=button(e,"关闭外接继电器",()->channelCommand("external","/api/relay",json("on",false)));externalReset=button(e,"解除外接保护锁定",()->channelCommand("external","/api/reset",new JSONObject()));externalTimer=button(e,"外接关闭倒计时",()->timerDialog("external"));button(e,"外接联动 · 保护 · 每日定时",()->rulesDialog("external"));disable();
  LinearLayout s=card();button(s,"计量校准 · 板载驱动方向",()->hardwareDialog());button(s,"Wi-Fi / Home Assistant 配置",()->networkDialog());button(s,"上传固件升级",()->{Intent i=new Intent(Intent.ACTION_OPEN_DOCUMENT);i.setType("application/octet-stream");i.addCategory(Intent.CATEGORY_OPENABLE);startActivityForResult(i,20);});button(s,"远程：打开 Home Assistant",()->haDialog());label(s,"首次连接：接入 MeteringSocket 热点，再添加 192.168.4.1 并点首次配对。离家通过 Home Assistant 或 VPN 控制。",13);
+ LinearLayout info=card();label(info,"项目信息",15);label(info,"作者："+AUTHOR,14);TextView link=label(info,PROJECT_URL,14);link.setAutoLinkMask(android.text.util.Linkify.WEB_URLS);link.setText(PROJECT_URL);link.setLinkTextColor(Color.rgb(0,112,96));
  }
  JSONObject json(String k,Object v){JSONObject d=new JSONObject();try{d.put(k,v);}catch(Exception ignored){}return d;}
  JSONObject channelBody(String channel,JSONObject body){try{body.put("channel",channel);}catch(JSONException ignored){}return body;}

@@ -18,3 +18,7 @@
 尚未实测：自焊ESP32-C3、真实BL0942串口响应及校准、真实继电器电气和上电复位瞬态、热点实机配网、突然断电电量保存、NTP获取及实际Android 8.0（API 26）手机。需要画板并焊接后验证，不能用注入数据替代真实计量验收。
 
 `dist/android-preview.png`为Android 15（API 35）模拟设备数据截图。
+
+---
+
+作者：**topsai (范斯特洛夫斯基)** · [项目地址](https://github.com/topsai/metering-socket)

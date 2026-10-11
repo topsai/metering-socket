@@ -1,5 +1,7 @@
 # 计量插座 · MeteringSocket
 
+作者：**topsai (范斯特洛夫斯基)** · [GitHub 项目地址](https://github.com/topsai/metering-socket)
+
 基于 **ESP32-C3 + BL0942** 的计量插座软件：PlatformIO Arduino 固件、原生中文 Android App，以及可选的 Home Assistant MQTT 接入。
 
 手机与设备在同一局域网、能够互相访问时，可以通过 HTTP 直接控制设备，**在没有 MQTT 服务的情况下也可以使用**。配置 MQTT 后，还可以接入 Home Assistant（HA），两种方式可以同时启用。
